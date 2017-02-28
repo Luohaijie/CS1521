@@ -1,0 +1,592 @@
+C51 COMPILER V9.00   FUNCTION                                                              02/28/2017 15:36:31 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE FUNCTION
+OBJECT MODULE PLACED IN .\output\function.obj
+COMPILER INVOKED BY: D:\Keil_C51\C51\BIN\C51.EXE source\function.c LARGE BROWSE DEBUG OBJECTEXTEND PRINT(.\function.lst)
+                    - OBJECT(.\output\function.obj)
+
+line level    source
+
+   1          #include <CS1521.H>
+   2          #include "function.h" 
+   3          #include "adc.h"
+   4          #include "cacul.h"
+   5          #include "flash.h"
+   6          #include "uart.h"
+   7          #include "timer.h" 
+   8          #include "config.h"
+   9          #include "string.h"
+  10          
+  11          uchar lock_b;
+  12          float data K;
+  13          int16 Badd;
+  14          uchar first_time;//是否第一次运行
+  15          uchar first_correct;//是否第一次运行
+  16          uchar flag_uart;
+  17          uint16 flag_mode;
+  18          uint16 rx_buff_cnt;
+  19          uint16 VPP2_Last;
+  20          Package ReceiveData;
+  21          
+  22          
+  23          void work_mode(void)
+  24          {
+  25   1      #if CORRECT_MODE
+                      signed int data vpp2;
+              #endif  
+  28   1              uchar i;
+  29   1              uint16 tmp[10];
+  30   1              static unsigned int tmp_sum_last[5]={0xffff,0xffff,0xffff,0xffff,0xffff};
+  31   1              uint16 tmp_sum;
+  32   1              signed int data vpp1,vpp_PWM;
+  33   1      
+  34   1      //      uchar table[5];  
+  35   1      //      char ntab[17] = "0123456789ABCDEF";
+  36   1      
+  37   1              for(i=0;i<10;i++)
+  38   1              {
+  39   2                      if(flag_uart == 1)
+  40   2                      {
+  41   3                                      return;
+  42   3                      }
+  43   2      
+  44   2                      tmp[i]=Temp_ADC();
+  45   2      
+  46   2              }
+  47   1      
+  48   1              Insert_Sort (tmp,10);
+  49   1              tmp_sum=(unsigned int)((tmp[4]+tmp[5]+tmp[6]+tmp[7])>>2);
+  50   1              if(tmp_sum_last[0]!=0xffff)
+  51   1              {
+  52   2                      tmp_sum=(tmp_sum+tmp_sum_last[0]+tmp_sum_last[1]+tmp_sum_last[2]+tmp_sum_last[3])/5;
+  53   2              }
+  54   1              if((tmp_sum<TMP_AD_40L )&&(tmp_sum>TMP_AD_85H))
+C51 COMPILER V9.00   FUNCTION                                                              02/28/2017 15:36:31 PAGE 2   
+
+  55   1              {
+  56   2                      tmp_sum_last[0]=tmp_sum_last[1];
+  57   2                      tmp_sum_last[1]=tmp_sum_last[2];
+  58   2                      tmp_sum_last[2]=tmp_sum_last[3];
+  59   2                      tmp_sum_last[3]=tmp_sum;
+  60   2              }
+  61   1              else
+  62   1              {
+  63   2                      tmp_sum_last[0]=0xffff;
+  64   2              }       
+  65   1              if((tmp_sum<TMP_AD_L)&&(tmp_sum>TMP_AD_H ))
+  66   1              {
+  67   2                      vpp1=Flash_Read_Int(WORK_STAR_BASE+(tmp_sum-TMP_AD_H)*2);
+  68   2      #if CORRECT_MODE
+                              vpp2=Flash_Read_Int(Correct_Addr+(tmp_sum-TMP_AD_H)*2);
+                              if(((vpp2-VPP2_Last)>5)||((vpp2-VPP2_Last)<-5))
+                              {
+                                      vpp2=VPP2_Last;
+                              }
+                              
+                              vpp1=vpp1+vpp2-1024;
+                              VPP2_Last=vpp2;
+              #endif                  
+  78   2               vpp_PWM=(int)(K*vpp1)+Badd;    
+  79   2      
+  80   2              }
+  81   1      //      tmp_sum = Temp_ADC();
+  82   1      /*
+  83   1              UART_printf("  Temprature: ");
+  84   1              table[0]=ntab[tmp_sum/1000];
+  85   1              table[1]=ntab[tmp_sum%1000/100];
+  86   1              table[2]=ntab[tmp_sum%100/10];
+  87   1              table[3]=ntab[tmp_sum%10];
+  88   1              table[4]=' ';   
+  89   1              Uart_Send(table,4);
+  90   1      
+  91   1              UART_printf("  Vpp: ");
+  92   1              table[0]=ntab[vpp1/1000];
+  93   1              table[1]=ntab[vpp1%1000/100];
+  94   1              table[2]=ntab[vpp1%100/10];
+  95   1              table[3]=ntab[vpp1%10];
+  96   1              table[4]=' ';   
+  97   1              Uart_Send(table,4);
+  98   1      
+  99   1              UART_printf("  vpp_PWM: ");
+ 100   1              table[0]=ntab[vpp_PWM/1000];
+ 101   1              table[1]=ntab[vpp_PWM%1000/100];
+ 102   1              table[2]=ntab[vpp_PWM%100/10];
+ 103   1              table[3]=ntab[vpp_PWM%10];
+ 104   1              table[4]=' ';   
+ 105   1              Uart_Send(table,4);
+ 106   1       */
+ 107   1              if(vpp_PWM<2)vpp_PWM=2;
+ 108   1              else if(vpp_PWM>4095)vpp_PWM=4095;
+ 109   1              DAC_Output(vpp_PWM);    
+ 110   1      /*
+ 111   1              UART_printf("  %d Vcp: ",Badd);
+ 112   1              tmp_sum = Vcp_Collect();
+ 113   1              table[0]=ntab[tmp_sum/1000];
+ 114   1              table[1]=ntab[tmp_sum%1000/100];
+ 115   1              table[2]=ntab[tmp_sum%100/10];
+ 116   1              table[3]=ntab[tmp_sum%10];              
+C51 COMPILER V9.00   FUNCTION                                                              02/28/2017 15:36:31 PAGE 3   
+
+ 117   1          table[4]=' ';
+ 118   1          Uart_Send(table,5);
+ 119   1              UART_printf("  \n");
+ 120   1      */
+ 121   1              delay_ms(500);
+ 122   1      /*
+ 123   1                      table[0]=ntab[tmp_sum/1000];
+ 124   1                      table[1]=ntab[tmp_sum%1000/100];
+ 125   1                      table[2]=ntab[tmp_sum%100/10];
+ 126   1                      table[3]=ntab[tmp_sum%10];
+ 127   1                      UART_printf("temperature= ");
+ 128   1                      Uart_Send(table,4);
+ 129   1      
+ 130   1                      table[0]=ntab[vpp/1000];
+ 131   1                      table[1]=ntab[vpp%1000/100];
+ 132   1                      table[2]=ntab[vpp%100/10];
+ 133   1                      table[3]=ntab[vpp%10];
+ 134   1                      UART_printf(" ,  Flash= ");
+ 135   1                      Uart_Send(table,4);
+ 136   1                      
+ 137   1                  for(i=0;i<10;i++)
+ 138   1                      {
+ 139   1                              vcp[i]=Vcp_Collect();
+ 140   1                              delay_ms(10);
+ 141   1                      }
+ 142   1                      Insert_Sort(vcp,10);
+ 143   1      #if TEN_BIT
+ 144   1                      vcp_sum=(vcp[3]+vcp[4]+vcp[5]+vcp[6])/8;
+ 145   1      #else
+ 146   1              vcp_sum=(vcp[3]+vcp[4]+vcp[5]+vcp[6])/2;
+ 147   1      #endif
+ 148   1                      table[0]=ntab[vcp_sum/1000];
+ 149   1                      table[1]=ntab[vcp_sum%1000/100];
+ 150   1                      table[2]=ntab[vcp_sum%100/10];
+ 151   1                      table[3]=ntab[vcp_sum%10];
+ 152   1                      UART_printf(" ,  VCP= ");
+ 153   1                      Uart_Send(table,4);
+ 154   1                      UART_printf("\n");
+ 155   1      */
+ 156   1      }
+ 157          
+ 158          /***************************************
+ 159          输入：无
+ 160          输出：采集后的10位温度
+ 161          功能：采集来自晶体的温度对应的电压值,得到数字量
+ 162          ****************************************/
+ 163          void vpull_mode2(void) 
+ 164          {
+ 165   1      #if CORRECT_MODE
+                      signed int data vpp2;
+              #endif
+ 168   1              uchar i;
+ 169   1          unsigned int vpull1[66]=0;
+ 170   1              uint16 tmp[10];
+ 171   1              static unsigned int tmp_sum_last[5]={0xffff,0xffff,0xffff,0xffff,0xffff};
+ 172   1              int16 tmp_sum;
+ 173   1              long vpull_sum;
+ 174   1              signed int data vpp1,vpp_PWM,vpull;
+ 175   1      
+ 176   1      //      uchar table[5];  
+ 177   1      //      char ntab[17] = "0123456789ABCDEF";
+ 178   1      
+C51 COMPILER V9.00   FUNCTION                                                              02/28/2017 15:36:31 PAGE 4   
+
+ 179   1              for(i=0;i<8;i++)
+ 180   1              {
+ 181   2                      if(flag_uart == 1)
+ 182   2                      {
+ 183   3                              return;
+ 184   3                      }
+ 185   2                      tmp[i]=Temp_ADC();
+ 186   2              }
+ 187   1      
+ 188   1              Insert_Sort (tmp,8);
+ 189   1              tmp_sum=((tmp[2]+tmp[3]+tmp[4]+tmp[5])>>2);
+ 190   1              if(tmp_sum>4095)
+ 191   1              {
+ 192   2                      tmp_sum=4095;
+ 193   2              }
+ 194   1              if(tmp_sum<=0)
+ 195   1              {
+ 196   2                      tmp_sum=0;
+ 197   2              }
+ 198   1      
+ 199   1      
+ 200   1        
+ 201   1              for(i=0;i<32;i++)
+ 202   1              {
+ 203   2                      if(flag_uart == 1)
+ 204   2                      {
+ 205   3                              return;
+ 206   3                      }
+ 207   2      
+ 208   2                      vpull1[i]=Vpull_Collect();
+ 209   2      
+ 210   2              }
+ 211   1              Insert_Sort (vpull1,32); 
+ 212   1              vpull_sum=0;    
+ 213   1              for(i=16;i<20;i++)//首尾两个数据不舍弃，否则拉偏反应慢
+ 214   1              { 
+ 215   2                  vpull_sum=vpull_sum+vpull1[i];
+ 216   2              }
+ 217   1              vpull_sum = vpull_sum/4;        
+ 218   1              if(vpull_sum>4095)
+ 219   1              {
+ 220   2                      vpull_sum=4095;
+ 221   2              }
+ 222   1      
+ 223   1              vpull=(signed int)vpull_sum-2048;
+ 224   1      
+ 225   1              if(tmp_sum_last[0]!=0xffff)
+ 226   1              {
+ 227   2                      tmp_sum=(tmp_sum+tmp_sum_last[0]+tmp_sum_last[1]+tmp_sum_last[2]+tmp_sum_last[3])/5;
+ 228   2              }
+ 229   1              // 平滑温度补偿值
+ 230   1              // 极度温度下不平滑温度
+ 231   1              if((tmp_sum<TMP_AD_40L )&&(tmp_sum>TMP_AD_85H))
+ 232   1              {
+ 233   2                      tmp_sum_last[0]=tmp_sum_last[1];
+ 234   2                      tmp_sum_last[1]=tmp_sum_last[2];
+ 235   2                      tmp_sum_last[2]=tmp_sum_last[3];
+ 236   2                      tmp_sum_last[3]=tmp_sum;
+ 237   2              }
+ 238   1              else
+ 239   1              {
+ 240   2                      tmp_sum_last[0]=0xffff;
+C51 COMPILER V9.00   FUNCTION                                                              02/28/2017 15:36:31 PAGE 5   
+
+ 241   2              }
+ 242   1      
+ 243   1              
+ 244   1          if((tmp_sum<TMP_AD_L)&&(tmp_sum>TMP_AD_H ))
+ 245   1          {
+ 246   2                  vpp1=Flash_Read_Int(WORK_STAR_BASE+(tmp_sum-TMP_AD_H)*2);
+ 247   2      #if CORRECT_MODE
+                              vpp2=Flash_Read_Int(Correct_Addr+(tmp_sum-TMP_AD_H)*2);
+                              if(((vpp2-VPP2_Last)>5)||((vpp2-VPP2_Last)<-5))
+                              {
+                                      vpp2=VPP2_Last;
+                              }
+                              
+                              vpp1=vpp1+vpp2-1024;
+                              VPP2_Last=vpp2;
+              #endif
+ 257   2              }  
+ 258   1              vpp_PWM=vpp1+vpull;
+ 259   1      /*
+ 260   1              UART_printf("  vpp1: ");
+ 261   1              table[0]=ntab[vpp1/1000];
+ 262   1              table[1]=ntab[vpp1%1000/100];
+ 263   1              table[2]=ntab[vpp1%100/10];
+ 264   1              table[3]=ntab[vpp1%10];
+ 265   1              table[4]=' ';   
+ 266   1              Uart_Send(table,4);
+ 267   1              UART_printf("  vpp_PWM: ");
+ 268   1              table[0]=ntab[vpp_PWM/1000];
+ 269   1              table[1]=ntab[vpp_PWM%1000/100];
+ 270   1              table[2]=ntab[vpp_PWM%100/10];
+ 271   1              table[3]=ntab[vpp_PWM%10];
+ 272   1              table[4]=' ';   
+ 273   1              Uart_Send(table,4);
+ 274   1      
+ 275   1              vpull_sum = Vpull_Collect();
+ 276   1              UART_printf("  vpull_sum: ");
+ 277   1              table[0]=ntab[vpull_sum/1000];
+ 278   1              table[1]=ntab[vpull_sum%1000/100];
+ 279   1              table[2]=ntab[vpull_sum%100/10];
+ 280   1              table[3]=ntab[vpull_sum%10];
+ 281   1              table[4]=' ';   
+ 282   1              Uart_Send(table,4);
+ 283   1      */      
+ 284   1              vpp_PWM=(int)(K*vpp_PWM)+Badd;
+ 285   1      /*
+ 286   1              UART_printf("  vpp_PWM: ");
+ 287   1              table[0]=ntab[vpp_PWM/1000];
+ 288   1              table[1]=ntab[vpp_PWM%1000/100];
+ 289   1              table[2]=ntab[vpp_PWM%100/10];
+ 290   1              table[3]=ntab[vpp_PWM%10];
+ 291   1              table[4]='\n';  
+ 292   1              Uart_Send(table,4);
+ 293   1      */
+ 294   1              if(vpp_PWM<2)vpp_PWM=2;
+ 295   1              else if(vpp_PWM>4095)vpp_PWM=4095;
+ 296   1              DAC_Output(vpp_PWM);
+ 297   1              delay_ms(500); 
+ 298   1      
+ 299   1      }
+ 300          /*****************读CP电压*************************/
+ 301          static void ReadCp(void)
+ 302          {
+C51 COMPILER V9.00   FUNCTION                                                              02/28/2017 15:36:31 PAGE 6   
+
+ 303   1              int16 tmp_sum,vcp_sum;
+ 304   1          lock_b = 1;   
+ 305   1      
+ 306   1          tmp_sum=Temp_Collect();     
+ 307   1              vcp_sum=Vcp_Collect();     
+ 308   1          ReceiveData.Data[0] = tmp_sum>>8;
+ 309   1          ReceiveData.Data[1] = tmp_sum;
+ 310   1          ReceiveData.Data[2] = vcp_sum>>8;
+ 311   1          ReceiveData.Data[3] = vcp_sum;    
+ 312   1      }
+ 313          /*****************写FLASH压控曲线*******************/
+ 314          static void WriteFlash(void)
+ 315          {   
+ 316   1          uchar Fream_cnt;
+ 317   1          uchar  flash_CP;
+ 318   1          uint16 i;
+ 319   1          Fream_cnt = ReceiveData.Frame;
+ 320   1       
+ 321   1          for(i = 0 ; i < 256 ; i++)
+ 322   1          {
+ 323   2              flash_CP = ReceiveData.Data[i];        
+ 324   2              Flash_Write(WORK_STAR_BASE + i+(Fream_cnt*256),flash_CP);       
+ 325   2          }
+ 326   1      /*       
+ 327   1               for(i = 0 ; i < 2048 ; i++)
+ 328   1          {   
+ 329   1                  flash_CP=flash_CP;      
+ 330   1              Flash_Write(WORK_STAR_BASE + i*2,0x07);
+ 331   1                      Flash_Write(WORK_STAR_BASE + i*2+1,0xd0);               
+ 332   1          }
+ 333   1              Flash_Erase(FLAG_ADDR);
+ 334   1              delay_ms(10);           
+ 335   1              Flash_Write(FLAG_ADDR,0x01);
+ 336   1              flag_mode=1;
+ 337   1      */              
+ 338   1      }
+ 339          /*****************读压控曲线*******************/
+ 340          static void ReadFlash(void)
+ 341          {      
+ 342   1      //    uchar k;
+ 343   1          uint16 i;    
+ 344   1          uchar  flash_CP,Fream_cnt;
+ 345   1          
+ 346   1              Fream_cnt = ReceiveData.Frame;
+ 347   1          for(i = 0 ; i < 256 ; i++ )
+ 348   1          {                                                    
+ 349   2              flash_CP=Flash_Read(WORK_STAR_BASE+(Fream_cnt*256)+i);                  
+ 350   2              ReceiveData.Data[i] = flash_CP;                                                
+ 351   2          }
+ 352   1      //      ReceiveData.Null = k;          
+ 353   1          ReceiveData.Error = 0;
+ 354   1          Uart_Send((unsigned char *)(&ReceiveData),RX_BUFF_LEN);              
+ 355   1      }               
+ 356          /********读模式--0工作模式，非0锁相模式********/
+ 357          static void ReadMode(void)
+ 358          {
+ 359   1          
+ 360   1          ReceiveData.Data[1] = 0xff;
+ 361   1              ReceiveData.Data[2] = Flash_Read(FLAG_ADDR);            
+ 362   1      }
+ 363          /*****************读产品     *******************/
+ 364          static void ReadPr(void)
+C51 COMPILER V9.00   FUNCTION                                                              02/28/2017 15:36:31 PAGE 7   
+
+ 365          {   
+ 366   1              uchar i; 
+ 367   1          for(i = 0 ; i < 7; i++ )
+ 368   1          {
+ 369   2              ReceiveData.Data[i] =   Flash_Read(PR_ADDR+i);
+ 370   2          }
+ 371   1      }
+ 372          /*****************读SN     *******************/
+ 373          static void ReadSn(void)
+ 374          {    
+ 375   1              uchar i;
+ 376   1          for(i=0;i<12;i++)
+ 377   1          {
+ 378   2              ReceiveData.Data[i]= Flash_Read(SN_ADDR+i);         
+ 379   2          }
+ 380   1      }               
+ 381          /*****************写SN*******************/
+ 382          static void WriteSn(void)
+ 383          {
+ 384   1              uchar i;
+ 385   1          Flash_Erase(SN_ADDR);
+ 386   1          for(i = 0 ; i < 12 ; i++)
+ 387   1          {         
+ 388   2              Flash_Write(SN_ADDR + i,ReceiveData.Data[i]);        
+ 389   2          }
+ 390   1      }
+ 391          /*****************读软件版本     *******************/
+ 392          static void ReadVr(void)
+ 393          {
+ 394   1              uchar i;
+ 395   1          for(i = 0 ; i < 7; i++ )
+ 396   1          {
+ 397   2              ReceiveData.Data[i] = Flash_Read(VR_ADDR+i);
+ 398   2          }
+ 399   1      }
+ 400          /***************************************
+ 401          输入：无
+ 402          输出：无
+ 403          功能：解析串口读出的数据并返回数据
+ 404          ****************************************/
+ 405          void uart_op(void)
+ 406          {
+ 407   1              uchar tx_flag;  
+ 408   1              if(flag_uart==1)
+ 409   1              {
+ 410   2              switch (ReceiveData.Commond){
+ 411   3                  case READ_CP:
+ 412   3                      ReadCp();
+ 413   3                      tx_flag=1;
+ 414   3                      break;
+ 415   3                  case WRITE_FLASH:
+ 416   3                      WriteFlash();
+ 417   3                      tx_flag=1;
+ 418   3                      break;
+ 419   3                  case READ_FLASH:
+ 420   3                      ReadFlash();
+ 421   3                      break;
+ 422   3                  case ERASE_FLASH:
+ 423   3                      erase_flash();
+ 424   3                      tx_flag=1;
+ 425   3                      break;
+ 426   3                  case WRITE_MODE:
+C51 COMPILER V9.00   FUNCTION                                                              02/28/2017 15:36:31 PAGE 8   
+
+ 427   3                      write_flag();
+ 428   3                      tx_flag=1;
+ 429   3                      break;
+ 430   3                  case READ_MODE:
+ 431   3                      ReadMode();
+ 432   3                      tx_flag=1;
+ 433   3                      break;
+ 434   3                  case READ_PR:
+ 435   3                      ReadPr();
+ 436   3                      tx_flag=1;
+ 437   3                      break;
+ 438   3                  case READ_VR:
+ 439   3                      ReadVr();
+ 440   3                      tx_flag=1;
+ 441   3                      break;
+ 442   3                  case READ_SN:
+ 443   3                      ReadSn();
+ 444   3                      tx_flag=1;                
+ 445   3                      break;
+ 446   3                  case WRITE_SN:
+ 447   3                      WriteSn();
+ 448   3                      tx_flag=1;
+ 449   3                      break;
+ 450   3                  default :
+ 451   3                      tx_flag=2;
+ 452   3                      break;   
+ 453   3              }
+ 454   2      /*****************发送数据*******************/
+ 455   2              if(tx_flag==1)
+ 456   2              {
+ 457   3                  tx_flag=0;
+ 458   3                              ReceiveData.Error = 0;
+ 459   3                      Uart_Send((unsigned char *)(&ReceiveData),RX_BUFF_LEN);
+ 460   3      
+ 461   3              }
+ 462   2              else if(tx_flag==2)
+ 463   2              {
+ 464   3                  tx_flag=0;
+ 465   3                  ReceiveData.Head = 0x7E;
+ 466   3                  ReceiveData.Tail = 0xAA;
+ 467   3                  ReceiveData.Error = 1;
+ 468   3                  Uart_Send((unsigned char *)(&ReceiveData),RX_BUFF_LEN);
+ 469   3              }
+ 470   2               
+ 471   2                              
+ 472   2              }
+ 473   1              flag_uart=0;
+ 474   1              memset((unsigned char *)(&ReceiveData),0x00,RX_BUFF_LEN);
+ 475   1      }
+ 476          
+ 477          
+ 478          /***************************************
+ 479          输入：无
+ 480          输出：无
+ 481          功能：擦除拟合数据区间的数据
+ 482          擦除16行的数据4*1024=4096个地址。
+ 483          ****************************************/
+ 484           void  erase_flash(void)
+ 485          {
+ 486   1                      uchar i;
+ 487   1                      EAL = 0;
+ 488   1                      for(i=0;i<8;i++)
+C51 COMPILER V9.00   FUNCTION                                                              02/28/2017 15:36:31 PAGE 9   
+
+ 489   1                      {                       
+ 490   2                              Flash_Erase(WORK_STAR_BASE+i*1024);
+ 491   2                              delay_ms(1);                            
+ 492   2                      }
+ 493   1      
+ 494   1                      Flash_Erase(FLAG_ADDR);
+ 495   1                      delay_ms(1);
+ 496   1                      EAL = 1;
+ 497   1                      ReceiveData.Error = 0;    //成功标志
+ 498   1                      
+ 499   1      }
+ 500          /***************************************
+ 501          输入：无
+ 502          输出：无
+ 503          功能：通过擦写FLASH设置工作模式
+ 504          ****************************************/
+ 505          static void write_flag(void)
+ 506          {
+ 507   1              if(ReceiveData.Data[2]==0x00)  //工作模式
+ 508   1              {
+ 509   2                      Flash_Erase(FLAG_ADDR);
+ 510   2                      delay_ms(10);           
+ 511   2                      Flash_Write(FLAG_ADDR,0x00);
+ 512   2                      ReceiveData.Error=0;
+ 513   2                      flag_mode=0;
+ 514   2              }
+ 515   1              else if(ReceiveData.Data[2]==0xFF)  //锁相模式
+ 516   1              {
+ 517   2                      Flash_Erase(FLAG_ADDR);
+ 518   2                      delay_ms(10);
+ 519   2                      Flash_Write(FLAG_ADDR,0xFF);            
+ 520   2                      ReceiveData.Error=0;
+ 521   2                      flag_mode=0xff;
+ 522   2              }
+ 523   1              else if (ReceiveData.Data[2]==0x01)  //拉偏模式
+ 524   1              {
+ 525   2                      Flash_Erase(FLAG_ADDR);
+ 526   2                      delay_ms(10);
+ 527   2                      Flash_Write(FLAG_ADDR,0x01);                            
+ 528   2                      ReceiveData.Error=0;
+ 529   2                      flag_mode=1;
+ 530   2              }
+ 531   1              else
+ 532   1              {
+ 533   2                      ReceiveData.Error=1;
+ 534   2              }
+ 535   1      }
+ 536          void write_info(void)
+ 537          {        
+ 538   1              uchar PR[7] = "CS1521X";
+ 539   1              uchar VR[7] = "V.00.03";
+ 540   1              uchar i;
+ 541   1      
+ 542   1          Flash_Erase(PR_ADDR);
+ 543   1              Flash_Erase(VR_ADDR);
+ 544   1              for(i=0;i<7;i++)
+ 545   1              {
+ 546   2                      Flash_Write(PR_ADDR+i,PR[i]);
+ 547   2                      Flash_Write(VR_ADDR+i,VR[i]);                   
+ 548   2              }
+ 549   1      
+ 550   1      }
+C51 COMPILER V9.00   FUNCTION                                                              02/28/2017 15:36:31 PAGE 10  
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1864    ----
+   CONSTANT SIZE    =    146    ----
+   XDATA SIZE       =    282     136
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     16      89
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

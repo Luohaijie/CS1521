@@ -1,0 +1,295 @@
+C51 COMPILER V9.00   MAIN                                                                  02/28/2017 15:36:31 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\output\main.obj
+COMPILER INVOKED BY: D:\Keil_C51\C51\BIN\C51.EXE source\main.c LARGE BROWSE DEBUG OBJECTEXTEND PRINT(.\main.lst) OBJECT(
+                    -.\output\main.obj)
+
+line level    source
+
+   1          #include <CS1521.H>
+   2          #include "stdio.h"
+   3          #include "string.h"     
+   4          #include "adc.h"
+   5          #include "flash.h"
+   6          #include "timer.h"
+   7          #include "uart.h"
+   8          #include "function.h"
+   9          #include "cacul.h"
+  10          #include "config.h"     
+  11           
+  12          void Correct_Mode(void);
+  13          
+  14          void UART0(void) interrupt K_UART1
+  15          {
+  16   1              if((S1CON&0x01)==0x01){                         
+  17   2                      S1CON &= 0xfe;
+  18   2                      if (rx_buff_cnt < RX_BUFF_LEN)
+  19   2                      {
+  20   3                              *((unsigned char *)(&ReceiveData)+rx_buff_cnt) = S1BUF;
+  21   3                               
+  22   3                              if(ReceiveData.Head == 0x7E)
+  23   3                              {
+  24   4                                      if(rx_buff_cnt == RX_BUFF_LEN-1)  //计数满一个定长
+  25   4                                      {
+  26   5                                              if(ReceiveData.Tail==0xAA)
+  27   5                                              {
+  28   6                                                      flag_uart=1;
+  29   6                                                      rx_buff_cnt=0;
+  30   6                                              }
+  31   5                                      }
+  32   4                                      else
+  33   4                                      {
+  34   5                                              rx_buff_cnt++;
+  35   5                                      }
+  36   4                              }
+  37   3                              else
+  38   3                              {
+  39   4                                      rx_buff_cnt=0;
+  40   4                              }               
+  41   3                         
+  42   3                      }                
+  43   2               }
+  44   1      
+  45   1      }
+  46          
+  47          int main()
+  48          {        
+  49   1      #if  LOCK_SELF
+                      uint16 tmp_sum,vcp_sum,correct_f3;
+              #endif
+  52   1      //      uint16 vpp;     
+  53   1      //      uchar table[5];  
+  54   1      //      char ntab[17] = "0123456789ABCDEF";
+C51 COMPILER V9.00   MAIN                                                                  02/28/2017 15:36:31 PAGE 2   
+
+  55   1              uint16 tmp_sum;
+  56   1      
+  57   1          Time_Init();
+  58   1              delay_ms(1000);
+  59   1          Power_Init();
+  60   1          Port_Init();
+  61   1              Sin_Select(CSIN);
+  62   1              Uart_Init();
+  63   1      
+  64   1              flag_mode = Flash_Read(FLAG_ADDR);
+  65   1              
+  66   1              write_info();
+  67   1              Iterrup_Init(); 
+  68   1      //      correct_f1 = Flash_Read(Correct_Addr+610-TMP_AD_H);
+  69   1      //      correct_f2 = Flash_Read(Correct_Addr+580-TMP_AD_H);
+  70   1      
+  71   1      //      if(flag_mode!=0xff)
+  72   1              {
+  73   2              Calc_K_B();
+  74   2      //      delay_ms(1000);
+  75   2              tmp_sum=Temp_ADC();
+  76   2              VPP2_Last=Flash_Read(Correct_Addr+(tmp_sum-TMP_AD_H)*2);
+  77   2              }
+  78   1              
+  79   1              rx_buff_cnt= 0;
+  80   1              flag_uart=0;
+  81   1              lock_b=0;
+  82   1              tmp_sum = TMP_AD_H;
+  83   1              DAC_Output(2000);       
+  84   1              while(1)
+  85   1              {
+  86   2                      
+  87   2      //              if(rx_buff_cnt!=0)      USART_SendData(rx_buff_cnt);
+  88   2      //              USART_SendData(0x55);
+  89   2      /*              vpp = Vcp_Collect();
+  90   2                              table[0]=ntab[vpp/1000];
+  91   2                              table[1]=ntab[vpp%1000/100];
+  92   2                              table[2]=ntab[vpp%100/10];
+  93   2                              table[3]=ntab[vpp%10];          
+  94   2                      table[4]='\n';
+  95   2      //              Uart_Send(table,5);
+  96   2      */
+  97   2      //              delay_ms(500);
+  98   2      
+  99   2                      if(flag_uart == 1)
+ 100   2                      {
+ 101   3                              uart_op();                      
+ 102   3                      }
+ 103   2      
+ 104   2      
+ 105   2                      if((flag_mode == 0))
+ 106   2                      {        
+ 107   3      //                      Correct_Mode();                         
+ 108   3                              work_mode();
+ 109   3                      }
+ 110   2      
+ 111   2                      else if((flag_mode == 1))
+ 112   2                      {
+ 113   3      //                      Correct_Mode();                 
+ 114   3                              vpull_mode2();
+ 115   3                      }
+ 116   2      #if LOCK_SELF           
+C51 COMPILER V9.00   MAIN                                                                  02/28/2017 15:36:31 PAGE 3   
+
+                              if(flag_mode == 0xff)
+                              {
+                                      //correct_f3=Flash_Read(FLAG_ADDR+1);
+                                      tmp_sum=0;
+                                      vcp_sum=0;
+                                      tmp_sum=Temp_Collect();
+                                      vcp_sum=Vcp_Collect();          
+                                      if((vcp_sum<4000)&&(vcp_sum>200)&&(lock_b==1))
+                                      {
+                                              correct_f3=Flash_Read_Int(WORK_STAR_BASE+(tmp_sum-TMP_AD_H)*2);
+                                              if(correct_f3==0xffff)
+                                              {
+                                                      Flash_Write(WORK_STAR_BASE + (tmp_sum-TMP_AD_H)*2,vcp_sum>>8);
+                                                      Flash_Write(WORK_STAR_BASE + (tmp_sum-TMP_AD_H)*2+1,vcp_sum&0xff);
+                                              }
+                                      }
+               /*
+                                      vpp = Flash_Read(WORK_STAR_BASE+(tmp_sum-TMP_AD_H)*2);
+                                      vpp = vpp*256+Flash_Read(WORK_STAR_BASE+(tmp_sum-TMP_AD_H)*2+1);
+                                      table[0]=ntab[vpp/1000];
+                                      table[1]=ntab[vpp%1000/100];
+                                      table[2]=ntab[vpp%100/10];
+                                      table[3]=ntab[vpp%10];          
+                              table[4]='\n';
+                              Uart_Send(table,5);
+              
+                                      tmp_sum=tmp_sum+1;
+                                      if(tmp_sum == 4096)tmp_sum=0;
+              */                      
+                              }
+              #endif
+ 148   2                              
+ 149   2              }
+ 150   1                              
+ 151   1      }
+ 152          
+ 153          #if CORRECT_MODE
+              void Correct_Mode(void)
+              {
+                      uchar i;
+                      uint16 tmp[10];
+              //      unsigned int table[5];
+                      uint16 tmp_sum=0,vcp_sum=0,correct_f3,vpp;
+                      signed int data vpp_PWM,diff_last=0,tmp_last=0,diff=0,correct_y,correct_x;
+                      
+                      
+                      for(i=0;i<10;i++)
+                              {
+                                      if(flag_uart == 1)
+                                      {
+                                              uart_op();
+                                      }
+              
+                                      tmp[i]=Temp_ADC();
+                                      delay_ms(1);
+                              }
+              
+                              Insert_Sort (tmp,10);
+                              tmp_sum=(unsigned int)((tmp[4]+tmp[5]+tmp[6]+tmp[7])>>2);
+              #if CORRECT_DEBUG 
+                              table[0]=ntab[tmp_sum/1000];
+                              table[1]=ntab[tmp_sum%1000/100];
+C51 COMPILER V9.00   MAIN                                                                  02/28/2017 15:36:31 PAGE 4   
+
+                              table[2]=ntab[tmp_sum%100/10];
+                              table[3]=ntab[tmp_sum%10];              
+                      table[4]='v';
+                      Uart_Send(table,5);     
+              #endif
+                      correct_f3=Flash_Read(Correct_Addr+tmp_sum-TMP_AD_H);
+              
+                          if(correct_f3==0xffff)
+                      {
+                              correct_f3=0;
+                      if((tmp_sum<TMP_AD_L)&&(tmp_sum>TMP_AD_H ))
+                      {
+                              vpp=Flash_Read(tmp_sum+WORK_STAR_BASE-TMP_AD_H);
+              #if CORRECT_DEBUG       
+                              table[0]=ntab[vpp/1000];
+                                      table[1]=ntab[vpp%1000/100];
+                                      table[2]=ntab[vpp%100/10];
+                                      table[3]=ntab[vpp%10];          
+                              table[4]='d';
+                              Uart_Send(table,5);
+              #endif
+                                      while((signed int)(vpp-vcp_sum)>0)  
+                                      {      
+                                              
+                      
+                                              vpp_PWM=(int)((vpp+diff)*K)+B;
+                                              DAC_Output(vpp_PWM);            
+              
+                                  delay_ms(600);
+                      
+                                  for(i=0;i<10;i++)
+                                              {
+                                                      tmp[i]=Vcp_Collect();
+                                                      delay_ms(10);
+                                              }
+                                              Insert_Sort(tmp,10);
+                      #if TEN_BIT
+                                              vcp_sum=(tmp[3]+tmp[4]+tmp[5]+tmp[6])/8;
+                      #else
+                                      vcp_sum=(tmp[3]+tmp[4]+tmp[5]+tmp[6])/2;
+                      #endif
+                                              diff =diff+vpp-vcp_sum+1;
+                                                                              
+                                       }      
+                                             
+                                      diff =diff+1024;
+                                      
+                                      
+                                     
+                                      if(first_correct==0)
+                                      {
+                                              first_correct = 1;
+                      
+                                      }
+                                      else //(first_correct==1)
+                                      {
+                      
+                                              correct_y=diff-diff_last;
+                                              correct_x=tmp_sum-tmp_last;
+                      
+                                              if(((correct_y<-12)||(correct_y>12))&&((correct_x>-3)&&(correct_x<3)))
+                                              {
+C51 COMPILER V9.00   MAIN                                                                  02/28/2017 15:36:31 PAGE 5   
+
+                                                      diff=diff_last;
+                      
+                                              }
+                                              
+                              #if CORRECT_DEBUG               
+                                              table[0]=ntab[diff/1000];
+                                              table[1]=ntab[diff%1000/100];
+                                              table[2]=ntab[diff%100/10];
+                                              table[3]=ntab[diff%10];         
+                                      table[4]='t';
+                                      Uart_Send(table,5);
+                          #else
+                                      Flash_Write(Correct_Addr+tmp_sum-TMP_AD_H,diff);
+                          #endif      
+                                      }
+                                      
+                                      diff_last=diff;
+                                      tmp_last = tmp_sum;
+                      
+                          }
+                      }
+              }
+              #endif
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    242    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

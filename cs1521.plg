@@ -1,0 +1,930 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\User\tony\Desktop\Wafer\3225\cs1521.uvproj
+Project File Date:  12/20/2016
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling adc.c...
+source\adc.c(2): warning C318: can't open file 'adc.h'
+source\adc.c(3): warning C318: can't open file 'timer.h'
+source\adc.c(4): warning C318: can't open file 'cacul.h'
+source\adc.c(34): warning C322: unknown identifier
+SOURCE\ADC.C(50): warning C206: 'Insert_Sort': missing function-prototype
+SOURCE\ADC.C(50): error C267: 'Insert_Sort': requires ANSI-style prototype
+compiling cacul.c...
+source\cacul.c(2): warning C318: can't open file 'cacul.h'
+source\cacul.c(3): warning C318: can't open file 'timer.h'
+source\cacul.c(4): warning C318: can't open file 'adc.h'
+source\cacul.c(5): warning C318: can't open file 'flash.h'
+source\cacul.c(6): warning C318: can't open file 'function.h'
+SOURCE\CACUL.C(19): warning C206: 'PWM_Init': missing function-prototype
+SOURCE\CACUL.C(19): error C267: 'PWM_Init': requires ANSI-style prototype
+compiling flash.c...
+source\flash.c(3): warning C318: can't open file 'flash.h'
+SOURCE\FLASH.C(16): error C202: 'BYTE': undefined identifier
+SOURCE\FLASH.C(16): error C141: syntax error near 'aTemp_H'
+SOURCE\FLASH.C(17): error C141: syntax error near 'unsigned'
+SOURCE\FLASH.C(17): error C202: 'aTemp': undefined identifier
+SOURCE\FLASH.C(18): error C202: 'aTemp_H': undefined identifier
+SOURCE\FLASH.C(18): error C141: syntax error near 'code'
+SOURCE\FLASH.C(18): error C141: syntax error near ')'
+SOURCE\FLASH.C(19): error C141: syntax error near 'code'
+SOURCE\FLASH.C(19): error C141: syntax error near ')'
+SOURCE\FLASH.C(19): error C141: syntax error near ')'
+SOURCE\FLASH.C(22): error C202: 'aTemp': undefined identifier
+compiling function.c...
+source\function.c(1): warning C318: can't open file 'function.h'
+source\function.c(3): warning C318: can't open file 'adc.h'
+source\function.c(4): warning C318: can't open file 'cacul.h'
+source\function.c(5): warning C318: can't open file 'flash.h'
+source\function.c(6): warning C318: can't open file 'uart.h'
+source\function.c(7): warning C318: can't open file 'timer.h'
+SOURCE\FUNCTION.C(16): error C202: 'tmp_sum': undefined identifier
+SOURCE\FUNCTION.C(17): error C202: 'vcp_sum': undefined identifier
+SOURCE\FUNCTION.C(18): error C202: 'tmp_sum': undefined identifier
+SOURCE\FUNCTION.C(19): error C202: 'vcp_sum': undefined identifier
+SOURCE\FUNCTION.C(28): error C202: 'flag_uart': undefined identifier
+SOURCE\FUNCTION.C(33): error C202: 'tmp': undefined identifier
+SOURCE\FUNCTION.C(37): error C202: 'tmp': undefined identifier
+SOURCE\FUNCTION.C(38): error C202: 'tmp_sum': undefined identifier
+SOURCE\FUNCTION.C(39): error C202: 'tmp_sum_last': undefined identifier
+SOURCE\FUNCTION.C(41): error C202: 'tmp_sum': undefined identifier
+SOURCE\FUNCTION.C(43): error C202: 'tmp_sum': undefined identifier
+SOURCE\FUNCTION.C(45): error C202: 'tmp_sum_last': undefined identifier
+SOURCE\FUNCTION.C(46): error C202: 'tmp_sum_last': undefined identifier
+SOURCE\FUNCTION.C(47): error C202: 'tmp_sum_last': undefined identifier
+SOURCE\FUNCTION.C(48): error C202: 'tmp_sum_last': undefined identifier
+SOURCE\FUNCTION.C(52): error C202: 'tmp_sum_last': undefined identifier
+SOURCE\FUNCTION.C(54): error C202: 'tmp_sum': undefined identifier
+SOURCE\FUNCTION.C(56): error C202: 'vpp1': undefined identifier
+SOURCE\FUNCTION.C(57): error C202: 'vpp2': undefined identifier
+SOURCE\FUNCTION.C(58): error C202: 'vpp2': undefined identifier
+SOURCE\FUNCTION.C(60): error C202: 'vpp2': undefined identifier
+SOURCE\FUNCTION.C(63): error C202: 'vpp': undefined identifier
+SOURCE\FUNCTION.C(64): error C202: 'VPP2_Last': undefined identifier
+SOURCE\FUNCTION.C(66): error C202: 'vpp_PWM': undefined identifier
+SOURCE\FUNCTION.C(67): error C202: 'vpp_PWM': undefined identifier
+compiling main.c...
+source\main.c(4): warning C318: can't open file 'pic.h'
+source\main.c(5): warning C318: can't open file 'adc.h'
+source\main.c(6): warning C318: can't open file 'flash.h'
+source\main.c(7): warning C318: can't open file 'htc.h'
+source\main.c(8): warning C318: can't open file 'timer.h'
+source\main.c(9): warning C318: can't open file 'uart.h'
+source\main.c(10): warning C318: can't open file 'function.h'
+source\main.c(11): warning C318: can't open file 'cacul.h'
+source\main.c(12): warning C318: can't open file 'config.h'
+SOURCE\MAIN.C(21): error C202: 'RI1': undefined identifier
+SOURCE\MAIN.C(22): error C202: 'byte': undefined identifier
+SOURCE\MAIN.C(24): error C202: 'rx_buff_cnt': undefined identifier
+SOURCE\MAIN.C(26): error C202: 'ReceiveData': undefined identifier
+SOURCE\MAIN.C(29): error C202: 'rx_buff_cnt': undefined identifier
+SOURCE\MAIN.C(33): error C202: 'flag_uart': undefined identifier
+SOURCE\MAIN.C(34): error C202: 'rx_buff_cnt': undefined identifier
+SOURCE\MAIN.C(39): error C202: 'rx_buff_cnt': undefined identifier
+SOURCE\MAIN.C(44): error C202: 'rx_buff_cnt': undefined identifier
+SOURCE\MAIN.C(51): error C141: syntax error near 'void'
+source\main.c(98): warning C322: unknown identifier
+source\main.c(140): warning C322: unknown identifier
+source\main.c(156): warning C322: unknown identifier
+source\main.c(179): warning C322: unknown identifier
+source\main.c(209): warning C322: unknown identifier
+compiling timer.c...
+source\timer.c(2): warning C318: can't open file 'htc.h'
+source\timer.c(3): warning C318: can't open file 'timer.h'
+SOURCE\TIMER.C(27): warning C280: 'pwm_high': unreferenced local variable
+SOURCE\TIMER.C(71): warning C280: 'u': unreferenced local variable
+compiling uart.c...
+source\uart.c(2): warning C318: can't open file 'uart.h'
+SOURCE\UART.C(9): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(11): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(17): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(19): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(25): error C202: 'SM': undefined identifier
+SOURCE\UART.C(26): error C202: 'SM21': undefined identifier
+SOURCE\UART.C(30): error C202: 'REN1': undefined identifier
+SOURCE\UART.C(31): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(32): error C202: 'RI1': undefined identifier
+compiling config.c...
+source\config.c(2): warning C318: can't open file 'config.h'
+SOURCE\CONFIG.C(9): error C202: 'P0INEH': undefined identifier
+SOURCE\CONFIG.C(26): error C202: 'ES1': undefined identifier
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling adc.c...
+source\adc.c(2): warning C318: can't open file 'adc.h'
+source\adc.c(3): warning C318: can't open file 'timer.h'
+source\adc.c(4): warning C318: can't open file 'cacul.h'
+source\adc.c(5): warning C318: can't open file 'function.h'
+source\adc.c(35): warning C322: unknown identifier
+SOURCE\ADC.C(51): warning C206: 'Insert_Sort': missing function-prototype
+SOURCE\ADC.C(51): error C267: 'Insert_Sort': requires ANSI-style prototype
+compiling cacul.c...
+source\cacul.c(2): warning C318: can't open file 'cacul.h'
+source\cacul.c(3): warning C318: can't open file 'timer.h'
+source\cacul.c(4): warning C318: can't open file 'adc.h'
+source\cacul.c(5): warning C318: can't open file 'flash.h'
+source\cacul.c(6): warning C318: can't open file 'function.h'
+SOURCE\CACUL.C(19): warning C206: 'PWM_Init': missing function-prototype
+SOURCE\CACUL.C(19): error C267: 'PWM_Init': requires ANSI-style prototype
+compiling flash.c...
+source\flash.c(3): warning C318: can't open file 'flash.h'
+SOURCE\FLASH.C(16): error C202: 'BYTE': undefined identifier
+SOURCE\FLASH.C(16): error C141: syntax error near 'aTemp_H'
+SOURCE\FLASH.C(17): error C141: syntax error near 'unsigned'
+SOURCE\FLASH.C(17): error C202: 'aTemp': undefined identifier
+SOURCE\FLASH.C(18): error C202: 'aTemp_H': undefined identifier
+SOURCE\FLASH.C(18): error C141: syntax error near 'code'
+SOURCE\FLASH.C(18): error C141: syntax error near ')'
+SOURCE\FLASH.C(19): error C141: syntax error near 'code'
+SOURCE\FLASH.C(19): error C141: syntax error near ')'
+SOURCE\FLASH.C(19): error C141: syntax error near ')'
+SOURCE\FLASH.C(22): error C202: 'aTemp': undefined identifier
+compiling function.c...
+source\function.c(1): warning C318: can't open file 'function.h'
+source\function.c(3): warning C318: can't open file 'adc.h'
+source\function.c(4): warning C318: can't open file 'cacul.h'
+source\function.c(5): warning C318: can't open file 'flash.h'
+source\function.c(6): warning C318: can't open file 'uart.h'
+source\function.c(7): warning C318: can't open file 'timer.h'
+SOURCE\FUNCTION.C(16): error C202: 'tmp_sum': undefined identifier
+SOURCE\FUNCTION.C(17): error C202: 'vcp_sum': undefined identifier
+SOURCE\FUNCTION.C(18): error C202: 'tmp_sum': undefined identifier
+SOURCE\FUNCTION.C(19): error C202: 'vcp_sum': undefined identifier
+SOURCE\FUNCTION.C(28): error C202: 'flag_uart': undefined identifier
+SOURCE\FUNCTION.C(33): error C202: 'tmp': undefined identifier
+SOURCE\FUNCTION.C(37): error C202: 'tmp': undefined identifier
+SOURCE\FUNCTION.C(38): error C202: 'tmp_sum': undefined identifier
+SOURCE\FUNCTION.C(39): error C202: 'tmp_sum_last': undefined identifier
+SOURCE\FUNCTION.C(41): error C202: 'tmp_sum': undefined identifier
+SOURCE\FUNCTION.C(43): error C202: 'tmp_sum': undefined identifier
+SOURCE\FUNCTION.C(45): error C202: 'tmp_sum_last': undefined identifier
+SOURCE\FUNCTION.C(46): error C202: 'tmp_sum_last': undefined identifier
+SOURCE\FUNCTION.C(47): error C202: 'tmp_sum_last': undefined identifier
+SOURCE\FUNCTION.C(48): error C202: 'tmp_sum_last': undefined identifier
+SOURCE\FUNCTION.C(52): error C202: 'tmp_sum_last': undefined identifier
+SOURCE\FUNCTION.C(54): error C202: 'tmp_sum': undefined identifier
+SOURCE\FUNCTION.C(56): error C202: 'vpp1': undefined identifier
+SOURCE\FUNCTION.C(57): error C202: 'vpp2': undefined identifier
+SOURCE\FUNCTION.C(58): error C202: 'vpp2': undefined identifier
+SOURCE\FUNCTION.C(60): error C202: 'vpp2': undefined identifier
+SOURCE\FUNCTION.C(63): error C202: 'vpp': undefined identifier
+SOURCE\FUNCTION.C(64): error C202: 'VPP2_Last': undefined identifier
+SOURCE\FUNCTION.C(66): error C202: 'vpp_PWM': undefined identifier
+SOURCE\FUNCTION.C(67): error C202: 'vpp_PWM': undefined identifier
+compiling main.c...
+source\main.c(4): warning C318: can't open file 'pic.h'
+source\main.c(5): warning C318: can't open file 'adc.h'
+source\main.c(6): warning C318: can't open file 'flash.h'
+source\main.c(7): warning C318: can't open file 'htc.h'
+source\main.c(8): warning C318: can't open file 'timer.h'
+source\main.c(9): warning C318: can't open file 'uart.h'
+source\main.c(10): warning C318: can't open file 'function.h'
+source\main.c(11): warning C318: can't open file 'cacul.h'
+source\main.c(12): warning C318: can't open file 'config.h'
+SOURCE\MAIN.C(21): error C202: 'RI1': undefined identifier
+SOURCE\MAIN.C(22): error C202: 'byte': undefined identifier
+SOURCE\MAIN.C(24): error C202: 'rx_buff_cnt': undefined identifier
+SOURCE\MAIN.C(26): error C202: 'ReceiveData': undefined identifier
+SOURCE\MAIN.C(29): error C202: 'rx_buff_cnt': undefined identifier
+SOURCE\MAIN.C(33): error C202: 'flag_uart': undefined identifier
+SOURCE\MAIN.C(34): error C202: 'rx_buff_cnt': undefined identifier
+SOURCE\MAIN.C(39): error C202: 'rx_buff_cnt': undefined identifier
+SOURCE\MAIN.C(44): error C202: 'rx_buff_cnt': undefined identifier
+SOURCE\MAIN.C(51): error C141: syntax error near 'void'
+source\main.c(98): warning C322: unknown identifier
+source\main.c(140): warning C322: unknown identifier
+source\main.c(156): warning C322: unknown identifier
+source\main.c(179): warning C322: unknown identifier
+source\main.c(209): warning C322: unknown identifier
+compiling timer.c...
+source\timer.c(2): warning C318: can't open file 'htc.h'
+source\timer.c(3): warning C318: can't open file 'timer.h'
+SOURCE\TIMER.C(27): warning C280: 'pwm_high': unreferenced local variable
+SOURCE\TIMER.C(71): warning C280: 'u': unreferenced local variable
+compiling uart.c...
+source\uart.c(2): warning C318: can't open file 'uart.h'
+SOURCE\UART.C(9): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(11): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(17): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(19): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(25): error C202: 'SM': undefined identifier
+SOURCE\UART.C(26): error C202: 'SM21': undefined identifier
+SOURCE\UART.C(30): error C202: 'REN1': undefined identifier
+SOURCE\UART.C(31): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(32): error C202: 'RI1': undefined identifier
+compiling config.c...
+source\config.c(2): warning C318: can't open file 'config.h'
+SOURCE\CONFIG.C(9): error C202: 'P0INEH': undefined identifier
+SOURCE\CONFIG.C(26): error C202: 'ES1': undefined identifier
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling adc.c...
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_UP': invalid storage class
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_LOW': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_L': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_L': invalid storage class
+.\INCLUDE\TIMER.H(6): error C127: 'PWM_flag': invalid storage class
+.\INCLUDE\TIMER.H(9): error C132: 'Timer2_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(10): error C132: 'Timer1_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(11): error C132: 'Timer0_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(12): error C132: '_PWM_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(13): error C132: '_Pwm_Load': not in formal parameter list
+.\INCLUDE\TIMER.H(14): error C132: '_delay_ms': not in formal parameter list
+.\INCLUDE\TIMER.H(15): error C132: 'Delay_100us': not in formal parameter list
+.\INCLUDE\CACUL.H(6): error C127: 'K': invalid storage class
+.\INCLUDE\CACUL.H(7): error C127: 'B': invalid storage class
+.\INCLUDE\CACUL.H(9): error C127: 'Calc_K_B_Tenbit': invalid storage class
+.\INCLUDE\CACUL.H(10): error C127: 'Calc_K_B_Elebit': invalid storage class
+.\INCLUDE\CACUL.H(11): error C127: 'Calc_K_B': invalid storage class
+.\INCLUDE\CACUL.H(12): error C141: syntax error near ','
+.\INCLUDE\CACUL.H(12): error C127: '_Insert_Sort': invalid storage class
+.\INCLUDE\CACUL.H(13): error C127: '_Line_Fitting': invalid storage class
+.\INCLUDE\FUNCTION.H(53): error C127: 'Package': invalid storage class
+.\INCLUDE\FUNCTION.H(55): error C132: 'Package': not in formal parameter list
+.\INCLUDE\FUNCTION.H(55): error C141: syntax error near 'xdata'
+compiling cacul.c...
+.\INCLUDE\CACUL.H(12): error C141: syntax error near ','
+.\INCLUDE\FLASH.H(6): error C127: '_Flash_Read': invalid storage class
+.\INCLUDE\FLASH.H(7): error C127: '_Flash_Erase': invalid storage class
+.\INCLUDE\FLASH.H(8): error C127: '_Flash_Write': invalid storage class
+.\INCLUDE\FUNCTION.H(53): error C127: 'Package': invalid storage class
+.\INCLUDE\FUNCTION.H(55): error C132: 'Package': not in formal parameter list
+.\INCLUDE\FUNCTION.H(55): error C141: syntax error near 'xdata'
+compiling flash.c...
+SOURCE\FLASH.C(16): error C202: 'BYTE': undefined identifier
+SOURCE\FLASH.C(16): error C141: syntax error near 'aTemp_H'
+SOURCE\FLASH.C(17): error C141: syntax error near 'unsigned'
+SOURCE\FLASH.C(17): error C202: 'aTemp': undefined identifier
+SOURCE\FLASH.C(18): error C202: 'aTemp_H': undefined identifier
+SOURCE\FLASH.C(18): error C141: syntax error near 'code'
+SOURCE\FLASH.C(18): error C141: syntax error near ')'
+SOURCE\FLASH.C(19): error C141: syntax error near 'code'
+SOURCE\FLASH.C(19): error C141: syntax error near ')'
+SOURCE\FLASH.C(19): error C141: syntax error near ')'
+SOURCE\FLASH.C(22): error C202: 'aTemp': undefined identifier
+compiling function.c...
+D:\KEIL_C51\C51\INC\AIP\CS1521.H(16): error C231: 'B': redefinition
+.\INCLUDE\CACUL.H(6): error C127: 'K': invalid storage class
+.\INCLUDE\CACUL.H(7): error C127: 'B': invalid storage class
+.\INCLUDE\CACUL.H(9): error C127: 'Calc_K_B_Tenbit': invalid storage class
+.\INCLUDE\CACUL.H(10): error C127: 'Calc_K_B_Elebit': invalid storage class
+.\INCLUDE\CACUL.H(11): error C127: 'Calc_K_B': invalid storage class
+.\INCLUDE\CACUL.H(12): error C141: syntax error near ','
+.\INCLUDE\CACUL.H(12): error C127: '_Insert_Sort': invalid storage class
+.\INCLUDE\CACUL.H(13): error C127: '_Line_Fitting': invalid storage class
+.\INCLUDE\FLASH.H(6): error C127: '_Flash_Read': invalid storage class
+.\INCLUDE\FLASH.H(7): error C127: '_Flash_Erase': invalid storage class
+.\INCLUDE\FLASH.H(8): error C127: '_Flash_Write': invalid storage class
+.\INCLUDE\UART.H(5): error C132: 'Uart_Init': not in formal parameter list
+.\INCLUDE\UART.H(6): error C132: '_Uart_Send': not in formal parameter list
+.\INCLUDE\UART.H(7): error C132: '_USART_SendData': not in formal parameter list
+.\INCLUDE\UART.H(8): error C132: '_UART_printf': not in formal parameter list
+.\INCLUDE\UART.H(9): error C132: '_printn': not in formal parameter list
+.\INCLUDE\UART.H(10): error C132: '_UART_puts': not in formal parameter list
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_UP': invalid storage class
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_LOW': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_L': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_L': invalid storage class
+.\INCLUDE\TIMER.H(6): error C127: 'PWM_flag': invalid storage class
+.\INCLUDE\TIMER.H(9): error C132: 'Timer2_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(10): error C132: 'Timer1_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(11): error C132: 'Timer0_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(12): error C132: '_PWM_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(13): error C132: '_Pwm_Load': not in formal parameter list
+.\INCLUDE\TIMER.H(14): error C132: '_delay_ms': not in formal parameter list
+.\INCLUDE\TIMER.H(15): error C132: 'Delay_100us': not in formal parameter list
+SOURCE\FUNCTION.C(15): error C132: 'collect_mode': not in formal parameter list
+SOURCE\FUNCTION.C(15): error C141: syntax error near '{'
+SOURCE\FUNCTION.C(16): error C136: 'tmp_sum': 'void' on variable
+SOURCE\FUNCTION.C(16): error C244: 'tmp_sum': can't initialize, bad type or class
+SOURCE\FUNCTION.C(16): error C136: 'tmp_sum': 'void' on variable
+SOURCE\FUNCTION.C(16): error C132: 'tmp_sum': not in formal parameter list
+SOURCE\FUNCTION.C(17): error C244: 'vcp_sum': can't initialize, bad type or class
+SOURCE\FUNCTION.C(17): error C132: 'vcp_sum': not in formal parameter list
+SOURCE\FUNCTION.C(18): error C244: 'tmp_sum': can't initialize, bad type or class
+SOURCE\FUNCTION.C(18): error C132: 'tmp_sum': not in formal parameter list
+SOURCE\FUNCTION.C(19): error C244: 'vcp_sum': can't initialize, bad type or class
+SOURCE\FUNCTION.C(19): error C132: 'vcp_sum': not in formal parameter list
+SOURCE\FUNCTION.C(20): error C141: syntax error near '}'
+compiling main.c...
+source\main.c(4): warning C318: can't open file 'pic.h'
+.\INCLUDE\FLASH.H(6): error C127: '_Flash_Read': invalid storage class
+.\INCLUDE\FLASH.H(7): error C127: '_Flash_Erase': invalid storage class
+.\INCLUDE\FLASH.H(8): error C127: '_Flash_Write': invalid storage class
+source\main.c(7): warning C318: can't open file 'htc.h'
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_UP': invalid storage class
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_LOW': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_L': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_L': invalid storage class
+.\INCLUDE\TIMER.H(6): error C127: 'PWM_flag': invalid storage class
+.\INCLUDE\TIMER.H(9): error C132: 'Timer2_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(10): error C132: 'Timer1_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(11): error C132: 'Timer0_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(12): error C132: '_PWM_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(13): error C132: '_Pwm_Load': not in formal parameter list
+.\INCLUDE\TIMER.H(14): error C132: '_delay_ms': not in formal parameter list
+.\INCLUDE\TIMER.H(15): error C132: 'Delay_100us': not in formal parameter list
+.\INCLUDE\UART.H(5): error C132: 'Uart_Init': not in formal parameter list
+.\INCLUDE\UART.H(6): error C132: '_Uart_Send': not in formal parameter list
+.\INCLUDE\UART.H(7): error C132: '_USART_SendData': not in formal parameter list
+.\INCLUDE\UART.H(8): error C132: '_UART_printf': not in formal parameter list
+.\INCLUDE\UART.H(9): error C132: '_printn': not in formal parameter list
+.\INCLUDE\UART.H(10): error C132: '_UART_puts': not in formal parameter list
+.\INCLUDE\FUNCTION.H(53): error C127: 'Package': invalid storage class
+.\INCLUDE\FUNCTION.H(55): error C132: 'Package': not in formal parameter list
+.\INCLUDE\FUNCTION.H(55): error C141: syntax error near 'xdata'
+compiling timer.c...
+source\timer.c(2): warning C318: can't open file 'htc.h'
+SOURCE\TIMER.C(27): warning C280: 'pwm_high': unreferenced local variable
+SOURCE\TIMER.C(71): warning C280: 'u': unreferenced local variable
+compiling uart.c...
+SOURCE\UART.C(9): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(11): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(17): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(19): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(25): error C202: 'SM': undefined identifier
+SOURCE\UART.C(26): error C202: 'SM21': undefined identifier
+SOURCE\UART.C(30): error C202: 'REN1': undefined identifier
+SOURCE\UART.C(31): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(32): error C202: 'RI1': undefined identifier
+compiling config.c...
+SOURCE\CONFIG.C(9): error C202: 'P0INEH': undefined identifier
+SOURCE\CONFIG.C(26): error C202: 'ES1': undefined identifier
+Target not created
+Load "D:\\User\\tony\\Desktop\\Wafer\\3225\\cs1521" 
+_____^
+*** error 56: can't open file
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling adc.c...
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_UP': invalid storage class
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_LOW': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_L': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_L': invalid storage class
+.\INCLUDE\TIMER.H(6): error C127: 'PWM_flag': invalid storage class
+.\INCLUDE\TIMER.H(9): error C132: 'Timer2_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(10): error C132: 'Timer1_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(11): error C132: 'Timer0_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(12): error C132: '_PWM_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(13): error C132: '_Pwm_Load': not in formal parameter list
+.\INCLUDE\TIMER.H(14): error C132: '_delay_ms': not in formal parameter list
+.\INCLUDE\TIMER.H(15): error C132: 'Delay_100us': not in formal parameter list
+.\INCLUDE\CACUL.H(6): error C127: 'K': invalid storage class
+.\INCLUDE\CACUL.H(7): error C127: 'B': invalid storage class
+.\INCLUDE\CACUL.H(9): error C127: 'Calc_K_B_Tenbit': invalid storage class
+.\INCLUDE\CACUL.H(10): error C127: 'Calc_K_B_Elebit': invalid storage class
+.\INCLUDE\CACUL.H(11): error C127: 'Calc_K_B': invalid storage class
+.\INCLUDE\CACUL.H(12): error C141: syntax error near ','
+.\INCLUDE\CACUL.H(12): error C127: '_Insert_Sort': invalid storage class
+.\INCLUDE\CACUL.H(13): error C127: '_Line_Fitting': invalid storage class
+.\INCLUDE\FUNCTION.H(53): error C127: 'Package': invalid storage class
+.\INCLUDE\FUNCTION.H(55): error C132: 'Package': not in formal parameter list
+.\INCLUDE\FUNCTION.H(55): error C141: syntax error near 'xdata'
+compiling cacul.c...
+.\INCLUDE\CACUL.H(12): error C141: syntax error near ','
+.\INCLUDE\FLASH.H(6): error C127: '_Flash_Read': invalid storage class
+.\INCLUDE\FLASH.H(7): error C127: '_Flash_Erase': invalid storage class
+.\INCLUDE\FLASH.H(8): error C127: '_Flash_Write': invalid storage class
+.\INCLUDE\FUNCTION.H(53): error C127: 'Package': invalid storage class
+.\INCLUDE\FUNCTION.H(55): error C132: 'Package': not in formal parameter list
+.\INCLUDE\FUNCTION.H(55): error C141: syntax error near 'xdata'
+compiling flash.c...
+SOURCE\FLASH.C(16): error C202: 'BYTE': undefined identifier
+SOURCE\FLASH.C(16): error C141: syntax error near 'aTemp_H'
+SOURCE\FLASH.C(17): error C141: syntax error near 'unsigned'
+SOURCE\FLASH.C(17): error C202: 'aTemp': undefined identifier
+SOURCE\FLASH.C(18): error C202: 'aTemp_H': undefined identifier
+SOURCE\FLASH.C(18): error C141: syntax error near 'code'
+SOURCE\FLASH.C(18): error C141: syntax error near ')'
+SOURCE\FLASH.C(19): error C141: syntax error near 'code'
+SOURCE\FLASH.C(19): error C141: syntax error near ')'
+SOURCE\FLASH.C(19): error C141: syntax error near ')'
+SOURCE\FLASH.C(22): error C202: 'aTemp': undefined identifier
+compiling function.c...
+D:\KEIL_C51\C51\INC\AIP\CS1521.H(16): error C231: 'B': redefinition
+.\INCLUDE\CACUL.H(6): error C127: 'K': invalid storage class
+.\INCLUDE\CACUL.H(7): error C127: 'B': invalid storage class
+.\INCLUDE\CACUL.H(9): error C127: 'Calc_K_B_Tenbit': invalid storage class
+.\INCLUDE\CACUL.H(10): error C127: 'Calc_K_B_Elebit': invalid storage class
+.\INCLUDE\CACUL.H(11): error C127: 'Calc_K_B': invalid storage class
+.\INCLUDE\CACUL.H(12): error C141: syntax error near ','
+.\INCLUDE\CACUL.H(12): error C127: '_Insert_Sort': invalid storage class
+.\INCLUDE\CACUL.H(13): error C127: '_Line_Fitting': invalid storage class
+.\INCLUDE\FLASH.H(6): error C127: '_Flash_Read': invalid storage class
+.\INCLUDE\FLASH.H(7): error C127: '_Flash_Erase': invalid storage class
+.\INCLUDE\FLASH.H(8): error C127: '_Flash_Write': invalid storage class
+.\INCLUDE\UART.H(5): error C132: 'Uart_Init': not in formal parameter list
+.\INCLUDE\UART.H(6): error C132: '_Uart_Send': not in formal parameter list
+.\INCLUDE\UART.H(7): error C132: '_USART_SendData': not in formal parameter list
+.\INCLUDE\UART.H(8): error C132: '_UART_printf': not in formal parameter list
+.\INCLUDE\UART.H(9): error C132: '_printn': not in formal parameter list
+.\INCLUDE\UART.H(10): error C132: '_UART_puts': not in formal parameter list
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_UP': invalid storage class
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_LOW': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_L': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_L': invalid storage class
+.\INCLUDE\TIMER.H(6): error C127: 'PWM_flag': invalid storage class
+.\INCLUDE\TIMER.H(9): error C132: 'Timer2_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(10): error C132: 'Timer1_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(11): error C132: 'Timer0_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(12): error C132: '_PWM_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(13): error C132: '_Pwm_Load': not in formal parameter list
+.\INCLUDE\TIMER.H(14): error C132: '_delay_ms': not in formal parameter list
+.\INCLUDE\TIMER.H(15): error C132: 'Delay_100us': not in formal parameter list
+SOURCE\FUNCTION.C(15): error C132: 'collect_mode': not in formal parameter list
+SOURCE\FUNCTION.C(15): error C141: syntax error near '{'
+SOURCE\FUNCTION.C(16): error C136: 'tmp_sum': 'void' on variable
+SOURCE\FUNCTION.C(16): error C244: 'tmp_sum': can't initialize, bad type or class
+SOURCE\FUNCTION.C(16): error C136: 'tmp_sum': 'void' on variable
+SOURCE\FUNCTION.C(16): error C132: 'tmp_sum': not in formal parameter list
+SOURCE\FUNCTION.C(17): error C244: 'vcp_sum': can't initialize, bad type or class
+SOURCE\FUNCTION.C(17): error C132: 'vcp_sum': not in formal parameter list
+SOURCE\FUNCTION.C(18): error C244: 'tmp_sum': can't initialize, bad type or class
+SOURCE\FUNCTION.C(18): error C132: 'tmp_sum': not in formal parameter list
+SOURCE\FUNCTION.C(19): error C244: 'vcp_sum': can't initialize, bad type or class
+SOURCE\FUNCTION.C(19): error C132: 'vcp_sum': not in formal parameter list
+SOURCE\FUNCTION.C(20): error C141: syntax error near '}'
+compiling main.c...
+source\main.c(4): warning C318: can't open file 'pic.h'
+.\INCLUDE\FLASH.H(6): error C127: '_Flash_Read': invalid storage class
+.\INCLUDE\FLASH.H(7): error C127: '_Flash_Erase': invalid storage class
+.\INCLUDE\FLASH.H(8): error C127: '_Flash_Write': invalid storage class
+source\main.c(7): warning C318: can't open file 'htc.h'
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_UP': invalid storage class
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_LOW': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_L': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_L': invalid storage class
+.\INCLUDE\TIMER.H(6): error C127: 'PWM_flag': invalid storage class
+.\INCLUDE\TIMER.H(9): error C132: 'Timer2_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(10): error C132: 'Timer1_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(11): error C132: 'Timer0_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(12): error C132: '_PWM_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(13): error C132: '_Pwm_Load': not in formal parameter list
+.\INCLUDE\TIMER.H(14): error C132: '_delay_ms': not in formal parameter list
+.\INCLUDE\TIMER.H(15): error C132: 'Delay_100us': not in formal parameter list
+.\INCLUDE\UART.H(5): error C132: 'Uart_Init': not in formal parameter list
+.\INCLUDE\UART.H(6): error C132: '_Uart_Send': not in formal parameter list
+.\INCLUDE\UART.H(7): error C132: '_USART_SendData': not in formal parameter list
+.\INCLUDE\UART.H(8): error C132: '_UART_printf': not in formal parameter list
+.\INCLUDE\UART.H(9): error C132: '_printn': not in formal parameter list
+.\INCLUDE\UART.H(10): error C132: '_UART_puts': not in formal parameter list
+.\INCLUDE\FUNCTION.H(53): error C127: 'Package': invalid storage class
+.\INCLUDE\FUNCTION.H(55): error C132: 'Package': not in formal parameter list
+.\INCLUDE\FUNCTION.H(55): error C141: syntax error near 'xdata'
+compiling timer.c...
+source\timer.c(2): warning C318: can't open file 'htc.h'
+.\INCLUDE\FUNCTION.H(87): error C231: 'B': redefinition
+compiling uart.c...
+SOURCE\UART.C(9): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(11): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(17): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(19): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(25): error C202: 'SM': undefined identifier
+SOURCE\UART.C(26): error C202: 'SM21': undefined identifier
+SOURCE\UART.C(30): error C202: 'REN1': undefined identifier
+SOURCE\UART.C(31): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(32): error C202: 'RI1': undefined identifier
+compiling config.c...
+SOURCE\CONFIG.C(9): error C202: 'P0INEH': undefined identifier
+SOURCE\CONFIG.C(26): error C202: 'ES1': undefined identifier
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling adc.c...
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_UP': invalid storage class
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_LOW': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_L': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_L': invalid storage class
+.\INCLUDE\TIMER.H(6): error C127: 'PWM_flag': invalid storage class
+.\INCLUDE\TIMER.H(9): error C132: 'Timer2_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(10): error C132: 'Timer1_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(11): error C132: 'Timer0_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(12): error C132: '_PWM_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(13): error C132: '_Pwm_Load': not in formal parameter list
+.\INCLUDE\TIMER.H(14): error C132: '_delay_ms': not in formal parameter list
+.\INCLUDE\TIMER.H(15): error C132: 'Delay_100us': not in formal parameter list
+.\INCLUDE\CACUL.H(6): error C127: 'K': invalid storage class
+.\INCLUDE\CACUL.H(7): error C127: 'B': invalid storage class
+.\INCLUDE\CACUL.H(9): error C127: 'Calc_K_B_Tenbit': invalid storage class
+.\INCLUDE\CACUL.H(10): error C127: 'Calc_K_B_Elebit': invalid storage class
+.\INCLUDE\CACUL.H(11): error C127: 'Calc_K_B': invalid storage class
+.\INCLUDE\CACUL.H(12): error C141: syntax error near ','
+.\INCLUDE\CACUL.H(12): error C127: '_Insert_Sort': invalid storage class
+.\INCLUDE\CACUL.H(13): error C127: '_Line_Fitting': invalid storage class
+.\INCLUDE\FUNCTION.H(53): error C127: 'Package': invalid storage class
+.\INCLUDE\FUNCTION.H(55): error C132: 'Package': not in formal parameter list
+.\INCLUDE\FUNCTION.H(55): error C141: syntax error near 'xdata'
+compiling cacul.c...
+.\INCLUDE\CACUL.H(12): error C141: syntax error near ','
+.\INCLUDE\FLASH.H(6): error C127: '_Flash_Read': invalid storage class
+.\INCLUDE\FLASH.H(7): error C127: '_Flash_Erase': invalid storage class
+.\INCLUDE\FLASH.H(8): error C127: '_Flash_Write': invalid storage class
+.\INCLUDE\FUNCTION.H(53): error C127: 'Package': invalid storage class
+.\INCLUDE\FUNCTION.H(55): error C132: 'Package': not in formal parameter list
+.\INCLUDE\FUNCTION.H(55): error C141: syntax error near 'xdata'
+compiling flash.c...
+SOURCE\FLASH.C(16): error C202: 'BYTE': undefined identifier
+SOURCE\FLASH.C(16): error C141: syntax error near 'aTemp_H'
+SOURCE\FLASH.C(17): error C141: syntax error near 'unsigned'
+SOURCE\FLASH.C(17): error C202: 'aTemp': undefined identifier
+SOURCE\FLASH.C(18): error C202: 'aTemp_H': undefined identifier
+SOURCE\FLASH.C(18): error C141: syntax error near 'code'
+SOURCE\FLASH.C(18): error C141: syntax error near ')'
+SOURCE\FLASH.C(19): error C141: syntax error near 'code'
+SOURCE\FLASH.C(19): error C141: syntax error near ')'
+SOURCE\FLASH.C(19): error C141: syntax error near ')'
+SOURCE\FLASH.C(22): error C202: 'aTemp': undefined identifier
+compiling function.c...
+D:\KEIL_C51\C51\INC\AIP\CS1521.H(16): error C231: 'B': redefinition
+.\INCLUDE\CACUL.H(6): error C127: 'K': invalid storage class
+.\INCLUDE\CACUL.H(7): error C127: 'B': invalid storage class
+.\INCLUDE\CACUL.H(9): error C127: 'Calc_K_B_Tenbit': invalid storage class
+.\INCLUDE\CACUL.H(10): error C127: 'Calc_K_B_Elebit': invalid storage class
+.\INCLUDE\CACUL.H(11): error C127: 'Calc_K_B': invalid storage class
+.\INCLUDE\CACUL.H(12): error C141: syntax error near ','
+.\INCLUDE\CACUL.H(12): error C127: '_Insert_Sort': invalid storage class
+.\INCLUDE\CACUL.H(13): error C127: '_Line_Fitting': invalid storage class
+.\INCLUDE\FLASH.H(6): error C127: '_Flash_Read': invalid storage class
+.\INCLUDE\FLASH.H(7): error C127: '_Flash_Erase': invalid storage class
+.\INCLUDE\FLASH.H(8): error C127: '_Flash_Write': invalid storage class
+.\INCLUDE\UART.H(5): error C132: 'Uart_Init': not in formal parameter list
+.\INCLUDE\UART.H(6): error C132: '_Uart_Send': not in formal parameter list
+.\INCLUDE\UART.H(7): error C132: '_USART_SendData': not in formal parameter list
+.\INCLUDE\UART.H(8): error C132: '_UART_printf': not in formal parameter list
+.\INCLUDE\UART.H(9): error C132: '_printn': not in formal parameter list
+.\INCLUDE\UART.H(10): error C132: '_UART_puts': not in formal parameter list
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_UP': invalid storage class
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_LOW': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_L': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_L': invalid storage class
+.\INCLUDE\TIMER.H(6): error C127: 'PWM_flag': invalid storage class
+.\INCLUDE\TIMER.H(9): error C132: 'Timer2_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(10): error C132: 'Timer1_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(11): error C132: 'Timer0_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(12): error C132: '_PWM_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(13): error C132: '_Pwm_Load': not in formal parameter list
+.\INCLUDE\TIMER.H(14): error C132: '_delay_ms': not in formal parameter list
+.\INCLUDE\TIMER.H(15): error C132: 'Delay_100us': not in formal parameter list
+SOURCE\FUNCTION.C(15): error C132: 'collect_mode': not in formal parameter list
+SOURCE\FUNCTION.C(15): error C141: syntax error near '{'
+SOURCE\FUNCTION.C(16): error C136: 'tmp_sum': 'void' on variable
+SOURCE\FUNCTION.C(16): error C244: 'tmp_sum': can't initialize, bad type or class
+SOURCE\FUNCTION.C(16): error C136: 'tmp_sum': 'void' on variable
+SOURCE\FUNCTION.C(16): error C132: 'tmp_sum': not in formal parameter list
+SOURCE\FUNCTION.C(17): error C244: 'vcp_sum': can't initialize, bad type or class
+SOURCE\FUNCTION.C(17): error C132: 'vcp_sum': not in formal parameter list
+SOURCE\FUNCTION.C(18): error C244: 'tmp_sum': can't initialize, bad type or class
+SOURCE\FUNCTION.C(18): error C132: 'tmp_sum': not in formal parameter list
+SOURCE\FUNCTION.C(19): error C244: 'vcp_sum': can't initialize, bad type or class
+SOURCE\FUNCTION.C(19): error C132: 'vcp_sum': not in formal parameter list
+SOURCE\FUNCTION.C(20): error C141: syntax error near '}'
+compiling main.c...
+source\main.c(4): warning C318: can't open file 'pic.h'
+.\INCLUDE\FLASH.H(6): error C127: '_Flash_Read': invalid storage class
+.\INCLUDE\FLASH.H(7): error C127: '_Flash_Erase': invalid storage class
+.\INCLUDE\FLASH.H(8): error C127: '_Flash_Write': invalid storage class
+source\main.c(7): warning C318: can't open file 'htc.h'
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_UP': invalid storage class
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_LOW': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_L': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_L': invalid storage class
+.\INCLUDE\TIMER.H(6): error C127: 'PWM_flag': invalid storage class
+.\INCLUDE\TIMER.H(9): error C132: 'Timer2_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(10): error C132: 'Timer1_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(11): error C132: 'Timer0_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(12): error C132: '_PWM_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(13): error C132: '_Pwm_Load': not in formal parameter list
+.\INCLUDE\TIMER.H(14): error C132: '_delay_ms': not in formal parameter list
+.\INCLUDE\TIMER.H(15): error C132: 'Delay_100us': not in formal parameter list
+.\INCLUDE\UART.H(5): error C132: 'Uart_Init': not in formal parameter list
+.\INCLUDE\UART.H(6): error C132: '_Uart_Send': not in formal parameter list
+.\INCLUDE\UART.H(7): error C132: '_USART_SendData': not in formal parameter list
+.\INCLUDE\UART.H(8): error C132: '_UART_printf': not in formal parameter list
+.\INCLUDE\UART.H(9): error C132: '_printn': not in formal parameter list
+.\INCLUDE\UART.H(10): error C132: '_UART_puts': not in formal parameter list
+.\INCLUDE\FUNCTION.H(53): error C127: 'Package': invalid storage class
+.\INCLUDE\FUNCTION.H(55): error C132: 'Package': not in formal parameter list
+.\INCLUDE\FUNCTION.H(55): error C141: syntax error near 'xdata'
+compiling timer.c...
+source\timer.c(2): warning C318: can't open file 'htc.h'
+.\INCLUDE\FUNCTION.H(87): error C231: 'B': redefinition
+compiling uart.c...
+SOURCE\UART.C(9): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(11): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(17): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(19): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(25): error C202: 'SM': undefined identifier
+SOURCE\UART.C(26): error C202: 'SM21': undefined identifier
+SOURCE\UART.C(30): error C202: 'REN1': undefined identifier
+SOURCE\UART.C(31): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(32): error C202: 'RI1': undefined identifier
+compiling config.c...
+SOURCE\CONFIG.C(9): error C202: 'P0INEH': undefined identifier
+SOURCE\CONFIG.C(26): error C202: 'ES1': undefined identifier
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling adc.c...
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_UP': invalid storage class
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_LOW': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_L': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_L': invalid storage class
+.\INCLUDE\TIMER.H(6): error C127: 'PWM_flag': invalid storage class
+.\INCLUDE\TIMER.H(9): error C132: 'Timer2_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(10): error C132: 'Timer1_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(11): error C132: 'Timer0_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(12): error C132: '_PWM_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(13): error C132: '_Pwm_Load': not in formal parameter list
+.\INCLUDE\TIMER.H(14): error C132: '_delay_ms': not in formal parameter list
+.\INCLUDE\TIMER.H(15): error C132: 'Delay_100us': not in formal parameter list
+.\INCLUDE\CACUL.H(6): error C127: 'K': invalid storage class
+.\INCLUDE\CACUL.H(7): error C127: 'B': invalid storage class
+.\INCLUDE\CACUL.H(9): error C127: 'Calc_K_B_Tenbit': invalid storage class
+.\INCLUDE\CACUL.H(10): error C127: 'Calc_K_B_Elebit': invalid storage class
+.\INCLUDE\CACUL.H(11): error C127: 'Calc_K_B': invalid storage class
+.\INCLUDE\CACUL.H(12): error C141: syntax error near ','
+.\INCLUDE\CACUL.H(12): error C127: '_Insert_Sort': invalid storage class
+.\INCLUDE\CACUL.H(13): error C127: '_Line_Fitting': invalid storage class
+.\INCLUDE\FUNCTION.H(53): error C127: 'Package': invalid storage class
+.\INCLUDE\FUNCTION.H(55): error C132: 'Package': not in formal parameter list
+.\INCLUDE\FUNCTION.H(55): error C141: syntax error near 'xdata'
+compiling cacul.c...
+.\INCLUDE\CACUL.H(12): error C141: syntax error near ','
+.\INCLUDE\FLASH.H(6): error C127: '_Flash_Read': invalid storage class
+.\INCLUDE\FLASH.H(7): error C127: '_Flash_Erase': invalid storage class
+.\INCLUDE\FLASH.H(8): error C127: '_Flash_Write': invalid storage class
+.\INCLUDE\FUNCTION.H(53): error C127: 'Package': invalid storage class
+.\INCLUDE\FUNCTION.H(55): error C132: 'Package': not in formal parameter list
+.\INCLUDE\FUNCTION.H(55): error C141: syntax error near 'xdata'
+compiling flash.c...
+SOURCE\FLASH.C(16): error C202: 'BYTE': undefined identifier
+SOURCE\FLASH.C(16): error C141: syntax error near 'aTemp_H'
+SOURCE\FLASH.C(17): error C141: syntax error near 'unsigned'
+SOURCE\FLASH.C(17): error C202: 'aTemp': undefined identifier
+SOURCE\FLASH.C(18): error C202: 'aTemp_H': undefined identifier
+SOURCE\FLASH.C(18): error C141: syntax error near 'code'
+SOURCE\FLASH.C(18): error C141: syntax error near ')'
+SOURCE\FLASH.C(19): error C141: syntax error near 'code'
+SOURCE\FLASH.C(19): error C141: syntax error near ')'
+SOURCE\FLASH.C(19): error C141: syntax error near ')'
+SOURCE\FLASH.C(22): error C202: 'aTemp': undefined identifier
+compiling function.c...
+D:\KEIL_C51\C51\INC\AIP\CS1521.H(16): error C231: 'B': redefinition
+.\INCLUDE\CACUL.H(6): error C127: 'K': invalid storage class
+.\INCLUDE\CACUL.H(7): error C127: 'B': invalid storage class
+.\INCLUDE\CACUL.H(9): error C127: 'Calc_K_B_Tenbit': invalid storage class
+.\INCLUDE\CACUL.H(10): error C127: 'Calc_K_B_Elebit': invalid storage class
+.\INCLUDE\CACUL.H(11): error C127: 'Calc_K_B': invalid storage class
+.\INCLUDE\CACUL.H(12): error C141: syntax error near ','
+.\INCLUDE\CACUL.H(12): error C127: '_Insert_Sort': invalid storage class
+.\INCLUDE\CACUL.H(13): error C127: '_Line_Fitting': invalid storage class
+.\INCLUDE\FLASH.H(6): error C127: '_Flash_Read': invalid storage class
+.\INCLUDE\FLASH.H(7): error C127: '_Flash_Erase': invalid storage class
+.\INCLUDE\FLASH.H(8): error C127: '_Flash_Write': invalid storage class
+.\INCLUDE\UART.H(5): error C132: 'Uart_Init': not in formal parameter list
+.\INCLUDE\UART.H(6): error C132: '_Uart_Send': not in formal parameter list
+.\INCLUDE\UART.H(7): error C132: '_USART_SendData': not in formal parameter list
+.\INCLUDE\UART.H(8): error C132: '_UART_printf': not in formal parameter list
+.\INCLUDE\UART.H(9): error C132: '_printn': not in formal parameter list
+.\INCLUDE\UART.H(10): error C132: '_UART_puts': not in formal parameter list
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_UP': invalid storage class
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_LOW': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_L': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_L': invalid storage class
+.\INCLUDE\TIMER.H(6): error C127: 'PWM_flag': invalid storage class
+.\INCLUDE\TIMER.H(9): error C132: 'Timer2_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(10): error C132: 'Timer1_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(11): error C132: 'Timer0_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(12): error C132: '_PWM_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(13): error C132: '_Pwm_Load': not in formal parameter list
+.\INCLUDE\TIMER.H(14): error C132: '_delay_ms': not in formal parameter list
+.\INCLUDE\TIMER.H(15): error C132: 'Delay_100us': not in formal parameter list
+SOURCE\FUNCTION.C(15): error C132: 'collect_mode': not in formal parameter list
+SOURCE\FUNCTION.C(15): error C141: syntax error near '{'
+SOURCE\FUNCTION.C(16): error C136: 'tmp_sum': 'void' on variable
+SOURCE\FUNCTION.C(16): error C244: 'tmp_sum': can't initialize, bad type or class
+SOURCE\FUNCTION.C(16): error C136: 'tmp_sum': 'void' on variable
+SOURCE\FUNCTION.C(16): error C132: 'tmp_sum': not in formal parameter list
+SOURCE\FUNCTION.C(17): error C244: 'vcp_sum': can't initialize, bad type or class
+SOURCE\FUNCTION.C(17): error C132: 'vcp_sum': not in formal parameter list
+SOURCE\FUNCTION.C(18): error C244: 'tmp_sum': can't initialize, bad type or class
+SOURCE\FUNCTION.C(18): error C132: 'tmp_sum': not in formal parameter list
+SOURCE\FUNCTION.C(19): error C244: 'vcp_sum': can't initialize, bad type or class
+SOURCE\FUNCTION.C(19): error C132: 'vcp_sum': not in formal parameter list
+SOURCE\FUNCTION.C(20): error C141: syntax error near '}'
+compiling main.c...
+source\main.c(4): warning C318: can't open file 'pic.h'
+.\INCLUDE\FLASH.H(6): error C127: '_Flash_Read': invalid storage class
+.\INCLUDE\FLASH.H(7): error C127: '_Flash_Erase': invalid storage class
+.\INCLUDE\FLASH.H(8): error C127: '_Flash_Write': invalid storage class
+source\main.c(7): warning C318: can't open file 'htc.h'
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_UP': invalid storage class
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_LOW': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_L': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_L': invalid storage class
+.\INCLUDE\TIMER.H(6): error C127: 'PWM_flag': invalid storage class
+.\INCLUDE\TIMER.H(9): error C132: 'Timer2_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(10): error C132: 'Timer1_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(11): error C132: 'Timer0_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(12): error C132: '_PWM_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(13): error C132: '_Pwm_Load': not in formal parameter list
+.\INCLUDE\TIMER.H(14): error C132: '_delay_ms': not in formal parameter list
+.\INCLUDE\TIMER.H(15): error C132: 'Delay_100us': not in formal parameter list
+.\INCLUDE\UART.H(5): error C132: 'Uart_Init': not in formal parameter list
+.\INCLUDE\UART.H(6): error C132: '_Uart_Send': not in formal parameter list
+.\INCLUDE\UART.H(7): error C132: '_USART_SendData': not in formal parameter list
+.\INCLUDE\UART.H(8): error C132: '_UART_printf': not in formal parameter list
+.\INCLUDE\UART.H(9): error C132: '_printn': not in formal parameter list
+.\INCLUDE\UART.H(10): error C132: '_UART_puts': not in formal parameter list
+.\INCLUDE\FUNCTION.H(53): error C127: 'Package': invalid storage class
+.\INCLUDE\FUNCTION.H(55): error C132: 'Package': not in formal parameter list
+.\INCLUDE\FUNCTION.H(55): error C141: syntax error near 'xdata'
+compiling timer.c...
+source\timer.c(2): warning C318: can't open file 'htc.h'
+.\INCLUDE\FUNCTION.H(87): error C231: 'B': redefinition
+compiling uart.c...
+SOURCE\UART.C(9): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(11): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(17): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(19): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(25): error C202: 'SM': undefined identifier
+SOURCE\UART.C(26): error C202: 'SM21': undefined identifier
+SOURCE\UART.C(30): error C202: 'REN1': undefined identifier
+SOURCE\UART.C(31): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(32): error C202: 'RI1': undefined identifier
+compiling config.c...
+SOURCE\CONFIG.C(9): error C202: 'P0INEH': undefined identifier
+SOURCE\CONFIG.C(26): error C202: 'ES1': undefined identifier
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling adc.c...
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_UP': invalid storage class
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_LOW': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_L': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_L': invalid storage class
+.\INCLUDE\TIMER.H(6): error C127: 'PWM_flag': invalid storage class
+.\INCLUDE\TIMER.H(9): error C132: 'Timer2_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(10): error C132: 'Timer1_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(11): error C132: 'Timer0_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(12): error C132: '_PWM_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(13): error C132: '_Pwm_Load': not in formal parameter list
+.\INCLUDE\TIMER.H(14): error C132: '_delay_ms': not in formal parameter list
+.\INCLUDE\TIMER.H(15): error C132: 'Delay_100us': not in formal parameter list
+.\INCLUDE\CACUL.H(6): error C127: 'K': invalid storage class
+.\INCLUDE\CACUL.H(7): error C127: 'B': invalid storage class
+.\INCLUDE\CACUL.H(9): error C127: 'Calc_K_B_Tenbit': invalid storage class
+.\INCLUDE\CACUL.H(10): error C127: 'Calc_K_B_Elebit': invalid storage class
+.\INCLUDE\CACUL.H(11): error C127: 'Calc_K_B': invalid storage class
+.\INCLUDE\CACUL.H(12): error C141: syntax error near ','
+.\INCLUDE\CACUL.H(12): error C127: '_Insert_Sort': invalid storage class
+.\INCLUDE\CACUL.H(13): error C127: '_Line_Fitting': invalid storage class
+.\INCLUDE\FUNCTION.H(53): error C127: 'Package': invalid storage class
+.\INCLUDE\FUNCTION.H(55): error C132: 'Package': not in formal parameter list
+.\INCLUDE\FUNCTION.H(55): error C141: syntax error near 'xdata'
+compiling cacul.c...
+.\INCLUDE\CACUL.H(12): error C141: syntax error near ','
+.\INCLUDE\FLASH.H(6): error C127: '_Flash_Read': invalid storage class
+.\INCLUDE\FLASH.H(7): error C127: '_Flash_Erase': invalid storage class
+.\INCLUDE\FLASH.H(8): error C127: '_Flash_Write': invalid storage class
+.\INCLUDE\FUNCTION.H(53): error C127: 'Package': invalid storage class
+.\INCLUDE\FUNCTION.H(55): error C132: 'Package': not in formal parameter list
+.\INCLUDE\FUNCTION.H(55): error C141: syntax error near 'xdata'
+compiling flash.c...
+SOURCE\FLASH.C(16): error C202: 'BYTE': undefined identifier
+SOURCE\FLASH.C(16): error C141: syntax error near 'aTemp_H'
+SOURCE\FLASH.C(17): error C141: syntax error near 'unsigned'
+SOURCE\FLASH.C(17): error C202: 'aTemp': undefined identifier
+SOURCE\FLASH.C(18): error C202: 'aTemp_H': undefined identifier
+SOURCE\FLASH.C(18): error C141: syntax error near 'code'
+SOURCE\FLASH.C(18): error C141: syntax error near ')'
+SOURCE\FLASH.C(19): error C141: syntax error near 'code'
+SOURCE\FLASH.C(19): error C141: syntax error near ')'
+SOURCE\FLASH.C(19): error C141: syntax error near ')'
+SOURCE\FLASH.C(22): error C202: 'aTemp': undefined identifier
+compiling function.c...
+D:\KEIL_C51\C51\INC\AIP\CS1521.H(16): error C231: 'B': redefinition
+.\INCLUDE\CACUL.H(6): error C127: 'K': invalid storage class
+.\INCLUDE\CACUL.H(7): error C127: 'B': invalid storage class
+.\INCLUDE\CACUL.H(9): error C127: 'Calc_K_B_Tenbit': invalid storage class
+.\INCLUDE\CACUL.H(10): error C127: 'Calc_K_B_Elebit': invalid storage class
+.\INCLUDE\CACUL.H(11): error C127: 'Calc_K_B': invalid storage class
+.\INCLUDE\CACUL.H(12): error C141: syntax error near ','
+.\INCLUDE\CACUL.H(12): error C127: '_Insert_Sort': invalid storage class
+.\INCLUDE\CACUL.H(13): error C127: '_Line_Fitting': invalid storage class
+.\INCLUDE\FLASH.H(6): error C127: '_Flash_Read': invalid storage class
+.\INCLUDE\FLASH.H(7): error C127: '_Flash_Erase': invalid storage class
+.\INCLUDE\FLASH.H(8): error C127: '_Flash_Write': invalid storage class
+.\INCLUDE\UART.H(5): error C132: 'Uart_Init': not in formal parameter list
+.\INCLUDE\UART.H(6): error C132: '_Uart_Send': not in formal parameter list
+.\INCLUDE\UART.H(7): error C132: '_USART_SendData': not in formal parameter list
+.\INCLUDE\UART.H(8): error C132: '_UART_printf': not in formal parameter list
+.\INCLUDE\UART.H(9): error C132: '_printn': not in formal parameter list
+.\INCLUDE\UART.H(10): error C132: '_UART_puts': not in formal parameter list
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_UP': invalid storage class
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_LOW': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_L': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_L': invalid storage class
+.\INCLUDE\TIMER.H(6): error C127: 'PWM_flag': invalid storage class
+.\INCLUDE\TIMER.H(9): error C132: 'Timer2_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(10): error C132: 'Timer1_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(11): error C132: 'Timer0_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(12): error C132: '_PWM_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(13): error C132: '_Pwm_Load': not in formal parameter list
+.\INCLUDE\TIMER.H(14): error C132: '_delay_ms': not in formal parameter list
+.\INCLUDE\TIMER.H(15): error C132: 'Delay_100us': not in formal parameter list
+SOURCE\FUNCTION.C(15): error C132: 'collect_mode': not in formal parameter list
+SOURCE\FUNCTION.C(15): error C141: syntax error near '{'
+SOURCE\FUNCTION.C(16): error C136: 'tmp_sum': 'void' on variable
+SOURCE\FUNCTION.C(16): error C244: 'tmp_sum': can't initialize, bad type or class
+SOURCE\FUNCTION.C(16): error C136: 'tmp_sum': 'void' on variable
+SOURCE\FUNCTION.C(16): error C132: 'tmp_sum': not in formal parameter list
+SOURCE\FUNCTION.C(17): error C244: 'vcp_sum': can't initialize, bad type or class
+SOURCE\FUNCTION.C(17): error C132: 'vcp_sum': not in formal parameter list
+SOURCE\FUNCTION.C(18): error C244: 'tmp_sum': can't initialize, bad type or class
+SOURCE\FUNCTION.C(18): error C132: 'tmp_sum': not in formal parameter list
+SOURCE\FUNCTION.C(19): error C244: 'vcp_sum': can't initialize, bad type or class
+SOURCE\FUNCTION.C(19): error C132: 'vcp_sum': not in formal parameter list
+SOURCE\FUNCTION.C(20): error C141: syntax error near '}'
+compiling main.c...
+source\main.c(4): warning C318: can't open file 'pic.h'
+.\INCLUDE\FLASH.H(6): error C127: '_Flash_Read': invalid storage class
+.\INCLUDE\FLASH.H(7): error C127: '_Flash_Erase': invalid storage class
+.\INCLUDE\FLASH.H(8): error C127: '_Flash_Write': invalid storage class
+source\main.c(7): warning C318: can't open file 'htc.h'
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_UP': invalid storage class
+.\INCLUDE\TIMER.H(4): error C127: 'PWM_LOW': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_UP_L': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_H': invalid storage class
+.\INCLUDE\TIMER.H(5): error C127: 'PWM_LOW_L': invalid storage class
+.\INCLUDE\TIMER.H(6): error C127: 'PWM_flag': invalid storage class
+.\INCLUDE\TIMER.H(9): error C132: 'Timer2_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(10): error C132: 'Timer1_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(11): error C132: 'Timer0_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(12): error C132: '_PWM_Init': not in formal parameter list
+.\INCLUDE\TIMER.H(13): error C132: '_Pwm_Load': not in formal parameter list
+.\INCLUDE\TIMER.H(14): error C132: '_delay_ms': not in formal parameter list
+.\INCLUDE\TIMER.H(15): error C132: 'Delay_100us': not in formal parameter list
+.\INCLUDE\UART.H(5): error C132: 'Uart_Init': not in formal parameter list
+.\INCLUDE\UART.H(6): error C132: '_Uart_Send': not in formal parameter list
+.\INCLUDE\UART.H(7): error C132: '_USART_SendData': not in formal parameter list
+.\INCLUDE\UART.H(8): error C132: '_UART_printf': not in formal parameter list
+.\INCLUDE\UART.H(9): error C132: '_printn': not in formal parameter list
+.\INCLUDE\UART.H(10): error C132: '_UART_puts': not in formal parameter list
+.\INCLUDE\FUNCTION.H(53): error C127: 'Package': invalid storage class
+.\INCLUDE\FUNCTION.H(55): error C132: 'Package': not in formal parameter list
+.\INCLUDE\FUNCTION.H(55): error C141: syntax error near 'xdata'
+compiling timer.c...
+source\timer.c(2): warning C318: can't open file 'htc.h'
+.\INCLUDE\FUNCTION.H(87): error C231: 'B': redefinition
+compiling uart.c...
+SOURCE\UART.C(9): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(11): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(17): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(19): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(25): error C202: 'SM': undefined identifier
+SOURCE\UART.C(26): error C202: 'SM21': undefined identifier
+SOURCE\UART.C(30): error C202: 'REN1': undefined identifier
+SOURCE\UART.C(31): error C202: 'TI1': undefined identifier
+SOURCE\UART.C(32): error C202: 'RI1': undefined identifier
+compiling config.c...
+SOURCE\CONFIG.C(9): error C202: 'P0INEH': undefined identifier
+SOURCE\CONFIG.C(26): error C202: 'ES1': undefined identifier
+Target not created

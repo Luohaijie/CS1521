@@ -1,0 +1,11 @@
+".\output\STARTUP.obj",
+".\output\adc.obj",
+".\output\cacul.obj",
+".\output\config.obj",
+".\output\flash.obj",
+".\output\function.obj",
+".\output\main.obj",
+".\output\timer.obj",
+".\output\uart.obj" 
+TO ".\output\cs1521" 
+PRINT(".\cs1521.m51") RAMSIZE(256) 

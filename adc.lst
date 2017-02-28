@@ -1,0 +1,150 @@
+C51 COMPILER V9.00   ADC                                                                   02/28/2017 15:36:28 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE ADC
+OBJECT MODULE PLACED IN .\output\adc.obj
+COMPILER INVOKED BY: D:\Keil_C51\C51\BIN\C51.EXE source\adc.c LARGE BROWSE DEBUG OBJECTEXTEND PRINT(.\adc.lst) OBJECT(.\
+                    -output\adc.obj)
+
+line level    source
+
+   1          #include <CS1521.H>
+   2          #include "adc.h"
+   3          #include "cacul.h"
+   4          #include "function.h"
+   5          #include "config.h"
+   6          #include "timer.h"
+   7          
+   8          enum chanl{ch_vp,ch_cp,ch_ts,ch_vdd18}; 
+   9          uint16 buf[20];
+  10          /***************************************
+  11          输入：无
+  12          输出：采集后的10位温度
+  13          功能：采集来自晶体的温度对应的电压值,得到数字量
+  14          ****************************************/
+  15          #if MCU_temperture
+  16          unsigned int MCU_Temp(void)
+  17          {
+  18   1          uint16 adcVal=0;            
+  19   1              TEMPC = 0x01;   //enable tempsensor and output  
+  20   1              ADCR = 0x20;    // setting,Enable ADC,fadc = fx/2
+  21   1              ADCR = (ADCR & 0xf0) | (ch_ts & 0x0f);  // select channel ch_ts
+  22   1              ADCR |= 0x10;   // start ADC
+  23   1              while(!(ADCR & 0x08));  // wait ADC busy
+  24   1              adcVal = (ADRH << 8) | ADRL;    // read ADC
+  25   1              return  adcVal;         
+  26   1      }
+  27          #else
+              unsigned int  KDS_Temp(void)
+              {
+                  uint16 adcVal=0;                         
+                      return adcVal;
+              }
+              
+              #endif
+  35          unsigned int  Temp_ADC(void)
+  36          {
+  37   1          #if MCU_temperture
+  38   1              return MCU_Temp();
+  39   1              #else
+                              return KDS_Temp();
+                      #endif
+  42   1      }
+  43          
+  44          unsigned int Temp_Collect(void)
+  45          {
+  46   1              char data i,j;
+  47   1              uint16 Data;
+  48   1              long Sum=0;
+  49   1              for(j=0;j<16;j++)
+  50   1              {
+  51   2                      for(i=0;i<20;i++)
+  52   2                      {
+  53   3                              buf[i]=Temp_ADC();
+  54   3                              
+C51 COMPILER V9.00   ADC                                                                   02/28/2017 15:36:28 PAGE 2   
+
+  55   3                      }
+  56   2                      Insert_Sort(buf,20);            
+  57   2                      Data = (buf[6]+buf[7]+buf[8]+buf[9]+buf[10]+buf[11]+buf[12]+buf[13])>>3;
+  58   2                      Sum += Data;
+  59   2              }
+  60   1              Data = Sum>>4;
+  61   1              return(Data);
+  62   1      }
+  63          
+  64          /*****************************************
+  65          输入：无
+  66          输出：采集10位cp电压
+  67          功能：采集使晶体工作在中心频率的压控电压,得到数字量
+  68          ******************************************/
+  69          unsigned int Vcp_ADC(void)
+  70          {
+  71   1          uint16 adcVal=0;                    
+  72   1              ADCR = 0x20;    // setting,Enable ADC,fadc = fx/2
+  73   1              ADCR = (ADCR & 0xf0) | (ch_cp & 0x0f);  // select channel ch_cp
+  74   1              ADCR |= 0x10;   // start ADC
+  75   1              while(!(ADCR & 0x08));  // wait ADC busy
+  76   1              adcVal = (ADRH << 8) | ADRL;    // read ADC
+  77   1              return  adcVal; 
+  78   1      }
+  79          
+  80          
+  81          unsigned int Vcp_Collect(void)
+  82          {
+  83   1          char data i,j;
+  84   1          uint16 Data;
+  85   1          long Sum=0;
+  86   1              for(j=0;j<16;j++)
+  87   1              {
+  88   2                      for(i=0;i<20;i++)
+  89   2                      {
+  90   3                              buf[i]=Vcp_ADC();
+  91   3                              
+  92   3                      }
+  93   2                      Insert_Sort(buf,20);
+  94   2                      Data = (buf[6]+buf[7]+buf[8]+buf[9]+buf[10]+buf[11]+buf[12]+buf[13])>>3;
+  95   2                      Sum += Data;
+  96   2              }
+  97   1              Data = Sum>>4;
+  98   1              return(Data);
+  99   1      }
+ 100           
+ 101          /**************************************
+ 102          输入：无
+ 103          输出：采集后的10位拉偏电压值
+ 104          功能：采集来自晶体的拉偏电压值，得到数字量
+ 105          **************************************/
+ 106          unsigned int Vpull_Collect(void)
+ 107          {
+ 108   1          uint16 adcVal=0;                    
+ 109   1              ADCR = 0x20;    // setting,Enable ADC,fadc = fx/2
+ 110   1              ADCR = (ADCR & 0xf0) | (ch_vp & 0x0f);  // select channel ch_vp  0
+ 111   1              ADCR |= 0x10;   // start ADC
+ 112   1              while(!(ADCR & 0x08));  // wait ADC busy
+ 113   1              adcVal = (ADRH << 8) | ADRL;    // read ADC
+ 114   1              return  adcVal; 
+ 115   1      }
+ 116          
+C51 COMPILER V9.00   ADC                                                                   02/28/2017 15:36:28 PAGE 3   
+
+ 117          void DAC_Output(uint16 Dacval)
+ 118          {
+ 119   1              DAH = (Dacval>>8)&0x0f;
+ 120   1              DAL = Dacval&0xff;
+ 121   1              DAH |= 0x10;                              //dac使能
+ 122   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    534    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----       8
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     40      14
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
