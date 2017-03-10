@@ -8,9 +8,9 @@
 					  
 #define FLAG_ADDR		0x4000      //储存工作模式地址
 #define WORK_STAR_BASE	0x2000      //压控曲线首地址
-#define	TMP_AD_H	    1024			//高温（100度）对应的AD采样值
-#define	TMP_AD_L	    3200		//底温（-60度）对应的AD采样值
-#define TMP_AD_40L      3000        //低温（-40度）对应的AD采样值
+#define	TMP_AD_H	    1280			//高温（100度）对应的AD采样值
+#define	TMP_AD_L	    3328		//底温（-60度）对应的AD采样值
+#define TMP_AD_40L      3300        //低温（-40度）对应的AD采样值
 #define TMP_AD_85H      1500         //高温（85度）对应的AD采样值
 #define	VCP_AD_H	    4096
 #define	VCP_AD_L	    0

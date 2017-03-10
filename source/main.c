@@ -52,13 +52,13 @@ int main()
 //	uint16 vpp;	
 //	uchar table[5];	 
 //	char ntab[17] = "0123456789ABCDEF";
-	uint16 tmp_sum;
+//	uint16 tmp_sum;
 
     Time_Init();
 	delay_ms(1000);
     Power_Init();
     Port_Init();
-	Sin_Select(CSIN);
+	Sin_Select(CMOS);
 	Uart_Init();
 
 	flag_mode = Flash_Read(FLAG_ADDR);
@@ -70,32 +70,29 @@ int main()
 
 //	if(flag_mode!=0xff)
 	{
+	delay_ms(2000);
 	Calc_K_B();
 //	delay_ms(1000);
-	tmp_sum=Temp_ADC();
-	VPP2_Last=Flash_Read(Correct_Addr+(tmp_sum-TMP_AD_H)*2);
-	}
+	tmp_sum=Temp_Collect();
+	VPP2_Last=Flash_Read_Int(Correct_Addr+(tmp_sum-TMP_AD_H)*2);
 	
+	}
+
+	first_correct = 0;
 	rx_buff_cnt= 0;
 	flag_uart=0;
 	lock_b=0;
-	tmp_sum = TMP_AD_H;
+//	tmp_sum = TMP_AD_H;
 	DAC_Output(2000);	
 	while(1)
 	{
 		
-//		if(rx_buff_cnt!=0)	USART_SendData(rx_buff_cnt);
 //		USART_SendData(0x55);
-/*		vpp = Vcp_Collect();
-			table[0]=ntab[vpp/1000];
-			table[1]=ntab[vpp%1000/100];
-			table[2]=ntab[vpp%100/10];
-			table[3]=ntab[vpp%10];        	
-	        table[4]='\n';
-//	        Uart_Send(table,5);
-*/
-//		delay_ms(500);
-
+/*		tmp_sum = Temp_Collect();
+		UART_printf("  Temp_ADC: ");
+		printn(tmp_sum,10);
+	 	UART_printf("  \n"); 
+ */
 		if(flag_uart == 1)
 		{
  			uart_op(); 			
@@ -103,14 +100,18 @@ int main()
 
 
 		if((flag_mode == 0))
-		{        
-//			Correct_Mode();	 			
+		{
+#if CORRECT_MODE		        
+			Correct_Mode();	
+#endif			 			
 			work_mode();
 		}
 
 		else if((flag_mode == 1))
 		{
-//			Correct_Mode();			
+#if CORRECT_MODE
+			Correct_Mode();	
+#endif		
 			vpull_mode2();
 		}
 #if LOCK_SELF		
@@ -130,19 +131,7 @@ int main()
 					Flash_Write(WORK_STAR_BASE + (tmp_sum-TMP_AD_H)*2+1,vcp_sum&0xff);
 				}
 			}
- /*
-			vpp = Flash_Read(WORK_STAR_BASE+(tmp_sum-TMP_AD_H)*2);
-			vpp = vpp*256+Flash_Read(WORK_STAR_BASE+(tmp_sum-TMP_AD_H)*2+1);
-			table[0]=ntab[vpp/1000];
-			table[1]=ntab[vpp%1000/100];
-			table[2]=ntab[vpp%100/10];
-			table[3]=ntab[vpp%10];        	
-	        table[4]='\n';
-	        Uart_Send(table,5);
-
-			tmp_sum=tmp_sum+1;
-			if(tmp_sum == 4096)tmp_sum=0;
-*/			
+ 
 		}
 #endif
 			
@@ -167,44 +156,31 @@ void Correct_Mode(void)
 				uart_op();
 			}
 
-			tmp[i]=Temp_ADC();
-			delay_ms(1);
+			tmp[i]=Temp_Collect();			
 		}
 
 		Insert_Sort (tmp,10);
 		tmp_sum=(unsigned int)((tmp[4]+tmp[5]+tmp[6]+tmp[7])>>2);
-#if CORRECT_DEBUG 
-		table[0]=ntab[tmp_sum/1000];
-		table[1]=ntab[tmp_sum%1000/100];
-		table[2]=ntab[tmp_sum%100/10];
-		table[3]=ntab[tmp_sum%10];        	
-        table[4]='v';
-        Uart_Send(table,5);	
+
+       	correct_f3=Flash_Read_Int(Correct_Addr+(tmp_sum-TMP_AD_H)*2);
+#if CORRECT_DEBUG
+				UART_printf("  correct_f3: ");
+				printn(correct_f3,10);
 #endif
-       	correct_f3=Flash_Read(Correct_Addr+tmp_sum-TMP_AD_H);
 
 	    if(correct_f3==0xffff)
         {
 	        correct_f3=0;
         if((tmp_sum<TMP_AD_L)&&(tmp_sum>TMP_AD_H ))
        	{
-        	vpp=Flash_Read(tmp_sum+WORK_STAR_BASE-TMP_AD_H);
-#if CORRECT_DEBUG     	
-        	table[0]=ntab[vpp/1000];
-			table[1]=ntab[vpp%1000/100];
-			table[2]=ntab[vpp%100/10];
-			table[3]=ntab[vpp%10];        	
-	        table[4]='d';
-	        Uart_Send(table,5);
-#endif
+        	vpp=Flash_Read_Int(WORK_STAR_BASE+(tmp_sum-TMP_AD_H)*2);
+
 			while((signed int)(vpp-vcp_sum)>0)  
 			{      
-				
-	
-				vpp_PWM=(int)((vpp+diff)*K)+B;
+				vpp_PWM=(int)((vpp+diff)*K)+Badd;
 				DAC_Output(vpp_PWM);		
 
-	            delay_ms(600);
+	            delay_ms(300);
 	
 	            for(i=0;i<10;i++)
 				{
@@ -212,23 +188,18 @@ void Correct_Mode(void)
 					delay_ms(10);
 				}
 				Insert_Sort(tmp,10);
-	#if TEN_BIT
-				vcp_sum=(tmp[3]+tmp[4]+tmp[5]+tmp[6])/8;
-	#else
-	        	vcp_sum=(tmp[3]+tmp[4]+tmp[5]+tmp[6])/2;
-	#endif
+
+	        	vcp_sum=(tmp[3]+tmp[4]+tmp[5]+tmp[6])/4; 		 	
+
 				diff =diff+vpp-vcp_sum+1;
 								
 	 		 }	
 	 		       
 	        	diff =diff+1024;
-	        	
-	        	
-	               
 	        	if(first_correct==0)
 	        	{
 		        	first_correct = 1;
-	
+					VPP2_Last = diff;
 	        	}
 	        	else //(first_correct==1)
 	        	{
@@ -236,22 +207,19 @@ void Correct_Mode(void)
 		        	correct_y=diff-diff_last;
 		        	correct_x=tmp_sum-tmp_last;
 	
-		        	if(((correct_y<-12)||(correct_y>12))&&((correct_x>-3)&&(correct_x<3)))
+		        	if(((correct_y<-20)||(correct_y>20))&&((correct_x>-3)&&(correct_x<3)))
 		        	{
 			        	diff=diff_last;
 	
 		        	}
-		   	   	
-		#if CORRECT_DEBUG         	
-				table[0]=ntab[diff/1000];
-				table[1]=ntab[diff%1000/100];
-				table[2]=ntab[diff%100/10];
-				table[3]=ntab[diff%10];        	
-	        	table[4]='t';
-	        	Uart_Send(table,5);
-	    #else
-	    		Flash_Write(Correct_Addr+tmp_sum-TMP_AD_H,diff);
-	    #endif  	
+#if CORRECT_DEBUG
+				UART_printf("  diff: ");
+				printn(diff,10);
+			 	UART_printf("  \n"); 
+#endif
+	    		Flash_Write(Correct_Addr+(tmp_sum-TMP_AD_H)*2,diff>>8);
+				Flash_Write(Correct_Addr+(tmp_sum-TMP_AD_H)*2+1,diff&0xff);
+	    	
 	        	}
 	        	
 		        diff_last=diff;

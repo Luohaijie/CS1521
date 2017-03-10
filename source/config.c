@@ -30,7 +30,7 @@ void Iterrup_Init(void)
 
 void Power_Init(void)
 {
-	CTRL = 0x0C;            //0000 0100  vreg = 3V
+	CTRL = 0x04;            //0000 0100  vreg = 3V	adc0上拉使能
 }
 
 void Sin_Select(char SEL)	 //SEL = CMOS or CSIN

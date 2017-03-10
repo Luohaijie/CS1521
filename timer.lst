@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   TIMER                                                                 02/28/2017 15:36:31 PAGE 1   
+C51 COMPILER V9.00   TIMER                                                                 03/09/2017 13:35:19 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE TIMER
@@ -62,7 +62,7 @@ line level    source
   52   1              {
   53   2                  for(j=0;j<50;j++)
   54   2                              {
-C51 COMPILER V9.00   TIMER                                                                 02/28/2017 15:36:31 PAGE 2   
+C51 COMPILER V9.00   TIMER                                                                 03/09/2017 13:35:19 PAGE 2   
 
   55   3      //                                      IEN0|=0X40;
   56   3      //                                      IEN1|=0X40;

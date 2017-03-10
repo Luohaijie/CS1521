@@ -65,6 +65,8 @@ void work_mode(void)
 	if((tmp_sum<TMP_AD_L)&&(tmp_sum>TMP_AD_H ))
 	{
 		vpp1=Flash_Read_Int(WORK_STAR_BASE+(tmp_sum-TMP_AD_H)*2);
+	
+	
 #if CORRECT_MODE
 		vpp2=Flash_Read_Int(Correct_Addr+(tmp_sum-TMP_AD_H)*2);
 		if(((vpp2-VPP2_Last)>5)||((vpp2-VPP2_Last)<-5))
@@ -72,53 +74,45 @@ void work_mode(void)
 			vpp2=VPP2_Last;
 		}
 		
+	UART_printf("  Vpp2: ");
+	printn(vpp2,10);
 		vpp1=vpp1+vpp2-1024;
 		VPP2_Last=vpp2;
 #endif			
 	 vpp_PWM=(int)(K*vpp1)+Badd;	
-
+	 
 	}
-//	tmp_sum = Temp_ADC();
-/*
+
+/*  
 	UART_printf("  Temprature: ");
-	table[0]=ntab[tmp_sum/1000];
-	table[1]=ntab[tmp_sum%1000/100];
-	table[2]=ntab[tmp_sum%100/10];
-	table[3]=ntab[tmp_sum%10];
-	table[4]=' ';	
-	Uart_Send(table,4);
+	printn(tmp_sum,10);
 
 	UART_printf("  Vpp: ");
-	table[0]=ntab[vpp1/1000];
-	table[1]=ntab[vpp1%1000/100];
-	table[2]=ntab[vpp1%100/10];
-	table[3]=ntab[vpp1%10];
-	table[4]=' ';	
-	Uart_Send(table,4);
+	printn(vpp1,10);
 
 	UART_printf("  vpp_PWM: ");
-	table[0]=ntab[vpp_PWM/1000];
-	table[1]=ntab[vpp_PWM%1000/100];
-	table[2]=ntab[vpp_PWM%100/10];
-	table[3]=ntab[vpp_PWM%10];
-	table[4]=' ';	
-	Uart_Send(table,4);
- */
+	printn(vpp_PWM,10);
+ 	UART_printf("  \n"); 
+
+	UART_printf("  Tmp: ");
+	printn(tmp_sum,10);
+	UART_printf("  Vpp: ");
+	printn(vpp_PWM,10);
+	UART_printf("  \n");
+*/
 	if(vpp_PWM<2)vpp_PWM=2;
 	else if(vpp_PWM>4095)vpp_PWM=4095;
 	DAC_Output(vpp_PWM);	
-/*
-	UART_printf("  %d Vcp: ",Badd);
-	tmp_sum = Vcp_Collect();
-	table[0]=ntab[tmp_sum/1000];
-	table[1]=ntab[tmp_sum%1000/100];
-	table[2]=ntab[tmp_sum%100/10];
-	table[3]=ntab[tmp_sum%10];        	
-    table[4]=' ';
-    Uart_Send(table,5);
-	UART_printf("  \n");
-*/
-	delay_ms(500);
+	delay_ms(200);
+ /*	  
+	vpp1 = Vcp_Collect();
+	UART_printf("  vcp: ");
+	printn(vpp1,10);
+ 	UART_printf("  \n");
+*/	
+	
+
+	
 /*
 	 	table[0]=ntab[tmp_sum/1000];
 		table[1]=ntab[tmp_sum%1000/100];
@@ -256,41 +250,9 @@ void vpull_mode2(void)
 #endif
 	}  
 	vpp_PWM=vpp1+vpull;
-/*
-	UART_printf("  vpp1: ");
-	table[0]=ntab[vpp1/1000];
-	table[1]=ntab[vpp1%1000/100];
-	table[2]=ntab[vpp1%100/10];
-	table[3]=ntab[vpp1%10];
-	table[4]=' ';	
-	Uart_Send(table,4);
-	UART_printf("  vpp_PWM: ");
-	table[0]=ntab[vpp_PWM/1000];
-	table[1]=ntab[vpp_PWM%1000/100];
-	table[2]=ntab[vpp_PWM%100/10];
-	table[3]=ntab[vpp_PWM%10];
-	table[4]=' ';	
-	Uart_Send(table,4);
-
-	vpull_sum = Vpull_Collect();
-	UART_printf("  vpull_sum: ");
-	table[0]=ntab[vpull_sum/1000];
-	table[1]=ntab[vpull_sum%1000/100];
-	table[2]=ntab[vpull_sum%100/10];
-	table[3]=ntab[vpull_sum%10];
-	table[4]=' ';	
-	Uart_Send(table,4);
-*/	
+	
 	vpp_PWM=(int)(K*vpp_PWM)+Badd;
-/*
-	UART_printf("  vpp_PWM: ");
-	table[0]=ntab[vpp_PWM/1000];
-	table[1]=ntab[vpp_PWM%1000/100];
-	table[2]=ntab[vpp_PWM%100/10];
-	table[3]=ntab[vpp_PWM%10];
-	table[4]='\n';	
-	Uart_Send(table,4);
-*/
+
 	if(vpp_PWM<2)vpp_PWM=2;
 	else if(vpp_PWM>4095)vpp_PWM=4095;
 	DAC_Output(vpp_PWM);
@@ -317,24 +279,24 @@ static void WriteFlash(void)
     uchar  flash_CP;
     uint16 i;
     Fream_cnt = ReceiveData.Frame;
- 
+ 	  
     for(i = 0 ; i < 256 ; i++)
     {
         flash_CP = ReceiveData.Data[i];        
         Flash_Write(WORK_STAR_BASE + i+(Fream_cnt*256),flash_CP);	
     }
-/*	 
+/*		 
 	 for(i = 0 ; i < 2048 ; i++)
     {	
 	    flash_CP=flash_CP;      
-        Flash_Write(WORK_STAR_BASE + i*2,0x07);
-		Flash_Write(WORK_STAR_BASE + i*2+1,0xd0);		
+        Flash_Write(WORK_STAR_BASE + i*2,0x08);
+		Flash_Write(WORK_STAR_BASE + i*2+1,0x98);		
     }
 	Flash_Erase(FLAG_ADDR);
 	delay_ms(10);  		
-	Flash_Write(FLAG_ADDR,0x01);
-	flag_mode=1;
-*/		
+	Flash_Write(FLAG_ADDR,0x00);
+	flag_mode=0;
+ */		
 }
 /*****************¶ÁÑ¹¿ØÇúÏß*******************/
 static void ReadFlash(void)
@@ -536,7 +498,7 @@ static void write_flag(void)
 void write_info(void)
 {	 
 	uchar PR[7] = "CS1521X";
-	uchar VR[7] = "V.00.03";
+	uchar VR[7] = "Z.00.04";
 	uchar i;
 
     Flash_Erase(PR_ADDR);

@@ -2,6 +2,7 @@
 #include "uart.h"
 #include "function.h"
 #include "timer.h"
+#include "config.h"
 
 void Uart_Send(unsigned char *send_buff,uint16 len )
 {
@@ -14,10 +15,10 @@ void Uart_Send(unsigned char *send_buff,uint16 len )
 
 void USART_SendData(char data date)
 {
-	
+
 	S1BUF = date;
 	while((S1CON & 0x02) == 0x00);
-	S1CON &= 0xfd;	
+	S1CON &= 0xfd;
 }
 
 void Uart_Init(void)
@@ -27,9 +28,9 @@ void Uart_Init(void)
 	S1RELH = uartbd>>8;		   //²¨ÌØÂÊÉèÖÃ
 	S1RELL = uartbd&0xff;
     delay_ms(200);	//wait Boud rate overflow then load S1RELH,S1RELL
-	
+
 }
-/*
+#if UART_PRINTF
 void UART_puts(char *pch)
 {
 	while(*pch != '\0')
@@ -42,23 +43,26 @@ void UART_puts(char *pch)
 void printn(unsigned int n, unsigned int b)
 {
 	unsigned char ntab[17] = "0123456789ABCDEF";
-	unsigned int a, m;
-	if (n / b)
+	unsigned char tab[11];
+	signed char i=0;
+	if(n==0) USART_SendData(ntab[0]);
+	while (n)
 	{
-		a = n / b;
-		printn(a, b);  
+		i++;
+		if(i==11)i=0;
+		tab[i]=ntab[n%b];
+		n = n / b;
+
 	}
-	m = n % b;
-	USART_SendData(ntab[m]);
+	while(i>0)
+	{							   
+		USART_SendData(tab[i]);
+		i--;
+	}
+
 }
-*/	   
-/***********************************************************************************************
- ??:UART ?????
- ??:fmt ???????          
- ??:0
- ??:???C?????UART_printf ????? %d %l %o %x %s
-************************************************************************************************/
-/*
+
+
 void UART_printf(char *fmt, ...)
 {
     char c;
@@ -70,7 +74,7 @@ _loop:
         USART_SendData(c);
     }
     c = *fmt++;
-    if (c == 'd' || c == 'l')
+    if (c == 'd' || c == 'l')				   
 		{
         printn(*adx, 10);
     }
@@ -85,4 +89,4 @@ _loop:
     adx++;
     goto _loop;
 }
- */ 
+#endif

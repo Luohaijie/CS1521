@@ -85,7 +85,7 @@ void Calc_K_B(void)
 	DAC_Output(2000);
 	for(i=0;i<10;i++){
 		table[i] = Vcp_Collect();
-		delay_ms(50);		 
+		delay_ms(100);		 
 	}
 	Insert_Sort(table,10);
 	temp = (table[3]+table[4]+table[5]+table[6])/4;

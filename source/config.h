@@ -3,11 +3,13 @@
 
 #include <CS1521.H>
 
-#define MCU_temperture 1  //MCU=true;KDS=false
+#define MCU_temperture    1  //MCU=true;KDS=false
 //#define TEN_BIT 1
-#define LOCK_SELF 0
-#define CORRECT_DEBUG 0  
-#define CORRECT_MODE 0
+#define LOCK_SELF         1
+#define CORRECT_DEBUG     1  
+#define CORRECT_MODE      0
+#define UART_PRINTF	      0
+
 #define CMOS 0x02
 #define CSIN 0x03
 
